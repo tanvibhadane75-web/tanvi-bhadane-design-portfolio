@@ -164,20 +164,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    number: '01',
-    title: 'AI Recruiting Agent',
-    description:
-      'A recruitment assistant that supports resume parsing, candidate skill matching and job description generation.',
-    contribution:
-      'Designed the end-to-end flow and built the application with Python REST APIs, FastAPI and a Next.js interface backed by Supabase and PostgreSQL.',
-    tags: ['Python', 'FastAPI', 'Next.js', 'Supabase', 'PostgreSQL'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View on GitHub',
-    size: 'large',
-    coverNote: 'a thoughtful match, made easier',
-    coverImage: '/project-covers/ai-recruiting.png',
-  },
-  {
     number: '02',
     title: 'Document Generator',
     description:
