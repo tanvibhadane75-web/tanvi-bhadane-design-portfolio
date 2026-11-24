@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { aboutNotes, beyond, contact, currently, hero, profile, projects, resume, skills } from '@/lib/content';
+import Image from 'next/image';
+import { aboutNotes, achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
 import { ArrowDoodle, Doodle } from '@/components/doodles';
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -33,8 +34,9 @@ export function Hero() {
 
         <div className="mt-12 grid gap-10 md:grid-cols-12">
           <div className="reveal md:col-span-5 md:col-start-1" style={{ '--reveal-delay': '320ms' } as React.CSSProperties}>
-            <p className="font-serif-display text-2xl text-neutral-900">{hero.intro[0]}</p>
-            <p className="mt-4 max-w-md leading-relaxed text-neutral-600">{hero.intro[1]}</p>
+          <p className="font-serif-display text-2xl text-neutral-900">{hero.intro[0]}</p>
+          <p className="mt-2 font-hand text-xl text-[#8a8580]">{hero.intro[1]}</p>
+          <p className="mt-4 max-w-md leading-relaxed text-neutral-600">{hero.intro[2]}</p>
           </div>
 
           <div className="reveal relative md:col-span-4 md:col-start-8" style={{ '--reveal-delay': '440ms' } as React.CSSProperties}>
@@ -495,6 +497,23 @@ export function Skills() {
   );
 }
 
+function ProjectCover({ title, image, note }: { title: string; image: string; note: string }) {
+  return (
+    <div className="project-visual paper-card paper-edge relative overflow-hidden">
+      <div className="project-cover relative aspect-[16/10] w-full overflow-hidden bg-[#f4f0e9]">
+        <Image
+          src={image}
+          alt={`${title} project preview`}
+          fill
+          sizes="(max-width: 768px) 100vw, 60vw"
+          className="object-contain"
+        />
+      </div>
+      <p className="border-t border-[var(--line)] bg-white px-4 py-3 font-hand text-base text-neutral-600">{note}</p>
+    </div>
+  );
+}
+
 export function Projects() {
   return (
     <section id="projects" className="scroll-mt-24 border-t border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
@@ -505,14 +524,17 @@ export function Projects() {
           <p className="mt-4 leading-relaxed text-neutral-600">A quick look at the things I&apos;ve made. For the story behind the work, <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">visit the case study shelf</a>.</p>
         </div>
 
-        <div className="mt-16 space-y-12">
+        <div className="mt-16 space-y-16">
           {projects.map((project, i) => (
             <article
               key={project.number}
-              className="reveal border-b border-[var(--line)] pb-10 last:border-b-0"
+              className="reveal grid items-center gap-8 border-b border-[var(--line)] pb-12 last:border-b-0 md:grid-cols-12 md:gap-12"
               style={{ '--reveal-delay': `${i * 60}ms` } as React.CSSProperties}
             >
-              <div className="max-w-3xl">
+              <div className={`${i % 2 === 1 ? 'md:order-2' : ''} md:col-span-7`}>
+                <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} />
+              </div>
+              <div className={`${i % 2 === 1 ? 'md:order-1' : ''} md:col-span-5`}>
                 <ProjectBody project={project} />
               </div>
             </article>
@@ -607,6 +629,11 @@ function ProjectBody({ project }: { project: (typeof projects)[number] }) {
         <span className="font-hand text-base text-[#8a8580]">my contribution — </span>
         {project.contribution}
       </p>
+      {project.futureScope ? (
+        <p className="mt-3 text-sm leading-relaxed text-neutral-500">
+          <span className="font-medium text-neutral-700">Future scope: </span>{project.futureScope}
+        </p>
+      ) : null}
       <ul className="mt-5 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
           <li key={tag} className="border border-[var(--line)] bg-white px-2.5 py-1 text-xs text-neutral-600">
@@ -614,18 +641,20 @@ function ProjectBody({ project }: { project: (typeof projects)[number] }) {
           </li>
         ))}
       </ul>
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group mt-6 inline-flex items-center gap-2 border-b border-neutral-900 pb-1 text-sm tracking-wide text-neutral-900 transition-colors hover:text-[#8a7a5c]"
-      >
-        {project.linkLabel}
-        <svg width="16" height="16" viewBox="0 0 16 16" className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-          <path d="M2 8 H13 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span className="sr-only">(opens in a new tab)</span>
-      </a>
+      {project.link ? (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 inline-flex items-center gap-2 border-b border-neutral-900 pb-1 text-sm tracking-wide text-neutral-900 transition-colors hover:text-[#8a7a5c]"
+        >
+          {project.linkLabel ?? 'View project'}
+          <svg width="16" height="16" viewBox="0 0 16 16" className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+            <path d="M2 8 H13 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="sr-only">(opens in a new tab)</span>
+        </a>
+      ) : null}
     </div>
   );
 }
@@ -686,8 +715,8 @@ export function Resume() {
               <nav className="mt-4 space-y-3 text-sm" aria-label="Resume sections">
                 <a href="#resume-education" className="resume-index-link resume-index-terracotta">Education</a>
                 <a href="#resume-experience" className="resume-index-link resume-index-orange">Internship</a>
-                <a href="#resume-leadership" className="resume-index-link resume-index-blue">Leadership</a>
-                <a href="#resume-achievements" className="resume-index-link resume-index-yellow">Achievements</a>
+                <a href="#achievements" className="resume-index-link resume-index-blue">Achievements</a>
+                <a href="#activities" className="resume-index-link resume-index-yellow">Activities</a>
               </nav>
               <p className="mt-10 rotate-[-4deg] font-hand text-base text-[#b6a88f]">printed with a little hope</p>
             </aside>
@@ -696,14 +725,31 @@ export function Resume() {
               <p className="mb-2 font-hand text-lg text-[#8a8580]">a quick index of the work, learning and people who shaped me</p>
               <ResumeBlock id="resume-education" title="Education" items={resume.education} accent="terracotta" />
               <ResumeBlock id="resume-experience" title="Internship" items={resume.experience} accent="orange" />
-              <ResumeBlock id="resume-leadership" title="Leadership & Activities" items={resume.leadership} accent="blue" />
-              <ResumeBlock id="resume-achievements" title="Achievements" items={resume.achievements} accent="yellow" last />
+
             </div>
           </div>
         </div>
         <p className="reveal mt-4 text-center font-hand text-lg text-neutral-400">
           the full, formal version of me
         </p>
+      </div>
+    </section>
+  );
+}
+
+export function AchievementsAndActivities() {
+  return (
+    <section id="activities" className="scroll-mt-24 border-t border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-5xl">
+        <div className="reveal max-w-2xl">
+          <SectionLabel>chapter eight — beyond the classroom</SectionLabel>
+          <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Achievements &amp; extracurricular activities</h2>
+          <p className="mt-4 leading-relaxed text-neutral-600">A few milestones, teams and communities that have shaped my journey.</p>
+        </div>
+        <div className="resume-paper paper-card paper-edge mt-12 grid gap-8 overflow-hidden p-7 md:grid-cols-2 md:p-12">
+          <ResumeBlock id="achievements" title="Achievements" items={achievements} accent="yellow" last />
+          <ResumeBlock id="activities-list" title="Extracurricular activities" items={extracurricularActivities} accent="blue" last />
+        </div>
       </div>
     </section>
   );
@@ -718,7 +764,7 @@ function ResumeBlock({
 }: {
   id: string;
   title: string;
-  items: { title: string; place: string; detail: string }[];
+  items: { title: string; place: string; detail: string; link?: string; linkLabel?: string }[];
   accent: 'terracotta' | 'orange' | 'blue' | 'yellow';
   last?: boolean;
 }) {
@@ -734,6 +780,11 @@ function ResumeBlock({
             <p className="font-medium text-neutral-900">{item.title}</p>
             <p className="text-sm text-neutral-600">{item.place}</p>
             {item.detail ? <p className="mt-0.5 text-sm leading-relaxed text-neutral-500">{item.detail}</p> : null}
+            {item.link ? (
+              <a className="mt-2 inline-flex items-center gap-1 border-b border-neutral-700 pb-0.5 text-xs text-neutral-700 hover:text-[#a9523d]" href={item.link} target="_blank" rel="noopener noreferrer">
+                {item.linkLabel ?? 'View details'} <span aria-hidden="true">↗</span><span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ) : null}
           </li>
         ))}
       </ul>

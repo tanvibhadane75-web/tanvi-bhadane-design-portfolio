@@ -1,6 +1,7 @@
 import { Nav } from '@/components/nav';
 import {
   About,
+  AchievementsAndActivities,
   BackToTop,
   Beyond,
   CaseStudies,
@@ -29,6 +30,7 @@ export default function Home() {
         <Projects />
         <CaseStudies />
         <Resume />
+        <AchievementsAndActivities />
         <Contact />
       </main>
       <BackToTop />

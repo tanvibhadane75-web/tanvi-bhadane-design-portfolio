@@ -12,8 +12,9 @@ export const profile = {
 export const hero = {
   heading: 'A little about me',
   intro: [
-    "Hi, I'm Tanvi Bhadane.",
-    "I'm an engineering graduate interested in technology, data and design. I enjoy exploring ideas, understanding problems and creating things that bring together logic and creativity.",
+    "Hi, I'm Tanvi.",
+    'Designer, problem solver & curious learner.',
+    'I\'m an Electronics and Telecommunication engineering graduate interested in UI/UX design, product thinking and data analytics. I enjoy understanding problems and turning ideas into simple, useful digital experiences.',
   ],
   status:
     'Currently learning data analytics, exploring UI/UX and looking for opportunities to grow, create and learn.',
@@ -155,8 +156,9 @@ export type Project = {
   description: string;
   contribution: string;
   tags: string[];
-  link: string;
-  linkLabel: string;
+  link?: string;
+  linkLabel?: string;
+  futureScope?: string;
   size: 'large' | 'medium' | 'small';
   coverNote: string;
   coverImage: string;
@@ -185,7 +187,7 @@ export const projects: Project[] = [
     contribution:
       'Built the full web application and database, automating a repetitive college administrative workflow end to end.',
     tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
-    link: 'https://github.com/tanvibhadane75-web',
+    link: 'https://github.com/Student-section-project/DocumentGenerator',
     linkLabel: 'View on GitHub',
     size: 'medium',
     coverNote: 'less repetition, more room to focus',
@@ -195,12 +197,12 @@ export const projects: Project[] = [
     number: '03',
     title: 'Smart Biomedical Waste Management System',
     description:
-      'A system designed to support biomedical waste tracking, categorisation, QR-based tracking and reporting.',
+      'Problem solved: Hospitals needed a reliable, traceable way to track biomedical waste instead of handling it manually. What we did: Developed a web-based portal for biomedical waste tracking across hospitals, using QR codes and a PostgreSQL database to store and manage data.',
     contribution:
-      'Designed the tracking flow across hospitals, with role-based dashboards for admins, hospital staff and drivers.',
-    tags: ['QR Tracking', 'PostgreSQL', 'Dashboards'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View on GitHub',
+      'Built role-based dashboards for administrators, hospital staff and drivers.',
+    futureScope:
+      'Add real-time alerts, compliance reports and analytics, and scale the portal to more hospitals.',
+    tags: ['Python', 'REST APIs', 'PostgreSQL', 'QR Code Integration', 'Vercel'],
     size: 'medium',
     coverNote: 'making every handoff count',
     coverImage: '/project-covers/biomedical-waste.png',
@@ -213,8 +215,8 @@ export const projects: Project[] = [
     contribution:
       'Designed a clean, simple mobile ordering flow with a focus on smooth navigation between menu, cart and checkout.',
     tags: ['Figma', 'UI/UX', 'Mobile'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View design',
+    link: 'https://www.figma.com/design/6dlNjMgQ3ocnTB9AhGPBCf/Camp-Burger',
+    linkLabel: 'View in Figma',
     size: 'small',
     coverNote: 'a little more delight in every order',
     coverImage: '/project-covers/campburger.png',
@@ -246,27 +248,39 @@ export const resume = {
       detail: 'Built and shipped working web features.',
     },
   ],
-  leadership: [
-    {
-      title: 'Design Head',
-      place: 'Institute to Industry Connect (I2IC)',
-      detail: 'Aug 2024 – Aug 2025 · Led design initiatives, created visual content, mentored team members.',
-    },
-    {
-      title: 'NSS Volunteer',
-      place: 'National Service Scheme',
-      detail: 'Sep 2023 – Sep 2025 · Community service, awareness campaigns, environmental initiatives.',
-    },
-    {
-      title: 'Volunteer',
-      place: 'Regional Industry Summit 2024 (DSCI, IFCCI, IGCC)',
-      detail: 'Hyatt Regency Pune — industry-academia event.',
-    },
-  ],
-  achievements: [
-    { title: '1st Prize — VISHWACON 2024', place: 'AGRITECH Conclave (International Conference, VIT Pune)', detail: 'IoT Smart Cow Management — real-time livestock monitoring using RFID and ESP8266.' },
-  ],
 };
+
+export const achievements = [
+  {
+    title: '1st Prize — AGRITECH Conclave, VISHWACON 2024',
+    place: 'International Conference, VIT Pune',
+    detail: 'Awarded for developing an IoT-based Smart Cow Management System using RFID and ESP8266 for real-time livestock monitoring.',
+    link: 'https://drive.google.com/drive/folders/1tG0uOb93VRGdlj6I4SdWpd1Lzx9tUyIy',
+    linkLabel: 'View certificate',
+  },
+];
+
+export const extracurricularActivities = [
+  {
+    title: 'Institute to Industry Connect (I2IC)',
+    place: 'Design Lead · Aug 2024 – Aug 2025',
+    detail: '',
+    link: 'https://drive.google.com/drive/folders/14wdhiFQqTvImUAysPUN7NcKWKJSci0D_',
+    linkLabel: 'View certificate',
+  },
+  {
+    title: 'National Service Scheme (NSS)',
+    place: 'Volunteer · Sep 2023 – Sep 2025',
+    detail: '',
+  },
+  {
+    title: 'Regional Industry Summit 2024',
+    place: 'Volunteer · DSCI, IFCCI, IGCC · Hyatt Regency Pune',
+    detail: '',
+    link: 'https://drive.google.com/drive/folders/1_BWDL-IEHLx5IOc1-s9U_rHMgDujkx3s',
+    linkLabel: 'View certificate',
+  },
+];
 
 export const contact = {
   heading: "Have something in mind? Let's connect.",

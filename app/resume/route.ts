@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { profile, resume } from '@/lib/content';
+import { achievements, extracurricularActivities, profile, resume } from '@/lib/content';
 
 export async function GET() {
   const lines: [string, string][] = [
@@ -12,16 +12,16 @@ export async function GET() {
     ['LinkedIn', profile.linkedin],
     ['', ''],
     ['EDUCATION', ''],
-    ...resumeLines('education'),
+    ...resumeLines(resume.education),
     ['', ''],
     ['INTERNSHIP', ''],
-    ...resumeLines('experience'),
-    ['', ''],
-    ['LEADERSHIP & ACTIVITIES', ''],
-    ...resumeLines('leadership'),
+    ...resumeLines(resume.experience),
     ['', ''],
     ['ACHIEVEMENTS', ''],
-    ...resumeLines('achievements'),
+    ...resumeLines(achievements),
+    ['', ''],
+    ['EXTRACURRICULAR ACTIVITIES', ''],
+    ...resumeLines(extracurricularActivities),
   ];
 
   const text = lines.map(([a, b]) => (b ? `${a}: ${b}` : a)).join('\n');
@@ -34,10 +34,11 @@ export async function GET() {
   });
 }
 
-function resumeLines(key: 'education' | 'experience' | 'leadership' | 'achievements') {
+function resumeLines(items: { title: string; place: string; detail: string; link?: string }[]) {
   const lines: [string, string][] = [];
-  for (const item of resume[key]) {
+  for (const item of items) {
     lines.push([[item.title, item.place].filter(Boolean).join(' — '), item.detail], ['', '']);
+    if (item.link) lines.push([item.link, ''], ['', '']);
   }
   return lines;
 }
