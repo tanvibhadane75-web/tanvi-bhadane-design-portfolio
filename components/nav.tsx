@@ -15,6 +15,7 @@ const links = [
 export function Nav() {
   const [active, setActive] = useState<string>('');
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = links
@@ -45,7 +46,7 @@ export function Nav() {
         scrolled ? 'bg-white/90 backdrop-blur-sm shadow-[0_1px_0_var(--line)]' : 'bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-5 py-4 md:px-8" aria-label="Main">
+      <nav className="mx-auto grid max-w-6xl grid-cols-[1fr_auto] gap-x-5 gap-y-2 px-5 py-4 md:flex md:items-center md:justify-between md:px-8" aria-label="Main">
         <a
           href="#top"
           className="font-hand text-2xl leading-none text-neutral-900 transition-transform duration-300 hover:-rotate-2"
@@ -53,13 +54,24 @@ export function Nav() {
           {profile.name}
           <span className="sr-only"> — back to top</span>
         </a>
-        <ul className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap py-1 md:gap-8">
+        <button
+          type="button"
+          className="inline-flex items-center gap-2 border border-[var(--line)] bg-white/80 px-3 py-2 text-xs tracking-wide text-neutral-700 md:hidden"
+          aria-controls="portfolio-navigation"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? 'Close' : 'Menu'}
+          <span aria-hidden="true" className={`transition-transform duration-300 ${menuOpen ? 'rotate-45' : ''}`}>+</span>
+        </button>
+        <ul id="portfolio-navigation" className={`${menuOpen ? 'grid' : 'hidden'} col-span-2 grid-cols-3 gap-x-4 gap-y-3 border-t border-[var(--line)] pt-3 text-center md:col-span-1 md:flex md:items-center md:gap-8 md:border-0 md:py-1`}>
           {links.map((link) => {
             const isActive = active === link.href;
             return (
               <li key={link.href} className="relative">
                 <a
                   href={link.href}
+                  onClick={() => setMenuOpen(false)}
                   aria-current={isActive ? 'true' : undefined}
                   className={`text-[13px] tracking-wide transition-colors duration-300 hover:text-neutral-900 ${
                     isActive ? 'text-neutral-900' : 'text-neutral-500'

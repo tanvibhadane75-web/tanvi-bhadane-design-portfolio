@@ -443,7 +443,9 @@
   top: 44px;
   transform: translateX(-50%) rotate(-4deg);
   background: #f3df8c;
+  transition: transform 320ms ease, box-shadow 320ms ease;
 }
+.wish-note-featured:hover { transform: translateX(-50%) rotate(0) translateY(-3px); box-shadow: 0 8px 16px -8px rgba(23, 23, 23, .4); }
 .wish-note-visitor.visitor-1 { left: 18px; bottom: 54px; transform: rotate(-12deg); background: #e8b0b1; }
 .wish-note-visitor.visitor-2 { right: 16px; bottom: 38px; transform: rotate(9deg); background: #a9cde8; }
 .wish-note-visitor.visitor-3 { left: 48px; bottom: 13px; transform: rotate(3deg); background: #f1b36b; }
@@ -610,7 +612,7 @@
   .wish-dialog { padding: 28px 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .case-study-card, .case-cover::before, .case-cover::after, .case-cover-spark, .journal-signoff, .wish-dialog, .jar-glass, .jar-shake, .project-visual { animation: none; transition: none; }
+  .case-study-card, .case-cover::before, .case-cover::after, .case-cover-spark, .journal-signoff, .wish-dialog, .jar-glass, .jar-shake, .project-visual, .wish-note-featured { animation: none; transition: none; }
   .case-study-card:hover, .project-visual:hover { transform: none; }
   .project-visual:hover > div { transform: none; }
 }

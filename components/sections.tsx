@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { aboutNotes, beyond, contact, currently, hero, profile, projects, resume, skills } from '@/lib/content';
 import { ArrowDoodle, Doodle } from '@/components/doodles';
 
@@ -203,6 +203,26 @@ export function DreamWishJar() {
   const [status, setStatus] = useState('');
   const [statusKind, setStatusKind] = useState<'success' | 'error' | ''>('');
   const [selectedWish, setSelectedWish] = useState<Wish | null>(null);
+  const wishTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const wishCloseRef = useRef<HTMLButtonElement | null>(null);
+  const dialogWasOpen = useRef(false);
+
+  useEffect(() => {
+    if (!selectedWish) {
+      if (dialogWasOpen.current) wishTriggerRef.current?.focus();
+      dialogWasOpen.current = false;
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    wishCloseRef.current?.focus();
+    dialogWasOpen.current = true;
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedWish]);
 
   useEffect(() => {
     let mounted = true;
@@ -274,7 +294,15 @@ export function DreamWishJar() {
             <div className={`jar-glass ${isDropping ? 'jar-shake' : ''}`}>
               <div className="jar-neck" />
               <div className="jar-lid" />
-              <div className="wish-note wish-note-featured">{featuredWish}</div>
+              <button
+                ref={wishTriggerRef}
+                type="button"
+                className="wish-note wish-note-featured cursor-pointer text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c6953]"
+                aria-label="Read Tanvi's wish about visiting Thailand"
+                onClick={() => setSelectedWish({ id: 'tanvi-featured-wish', name: 'Tanvi', destination: 'Thailand', message: featuredWish, createdAt: '' })}
+              >
+                {featuredWish}
+              </button>
               {wishes.slice(0, 3).map((wish, index) => (
                 <div key={wish.id} className={`wish-note wish-note-visitor visitor-${index + 1}`}>
                   {wish.destination}
@@ -354,7 +382,7 @@ export function DreamWishJar() {
           {wishes.length > 0 ? (
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {wishes.slice(0, 6).map((wish, index) => (
-                <button key={`${wish.id}-card`} type="button" onClick={() => setSelectedWish(wish)} aria-label={`Read the wish for ${wish.destination}`} className={`sticky-note note-edge w-full p-5 text-left ${['note-pink', 'note-blue', 'note-orange', 'note-yellow'][index % 4]} ${index % 2 ? 'rotate-2' : '-rotate-1'}`}>
+                <button key={`${wish.id}-card`} type="button" onClick={(event) => { wishTriggerRef.current = event.currentTarget; setSelectedWish(wish); }} aria-label={`Read the wish for ${wish.destination}`} className={`sticky-note note-edge w-full p-5 text-left ${['note-pink', 'note-blue', 'note-orange', 'note-yellow'][index % 4]} ${index % 2 ? 'rotate-2' : '-rotate-1'}`}>
                   <span className="block font-hand text-xl leading-tight">{wish.destination}</span>
                   <span className="mt-2 block text-sm text-neutral-700">{wish.message ? `${wish.message.slice(0, 85)}${wish.message.length > 85 ? '…' : ''}` : 'A little dream, folded up and shared.'}</span>
                   {wish.name ? <span className="mt-3 block font-hand text-base text-neutral-600">— {wish.name}</span> : null}
@@ -369,8 +397,21 @@ export function DreamWishJar() {
       </div>
       {selectedWish ? (
         <div className="wish-dialog-backdrop" onClick={() => setSelectedWish(null)}>
-          <section role="dialog" aria-modal="true" aria-labelledby="wish-dialog-title" className="wish-dialog paper-card paper-edge" onClick={(event) => event.stopPropagation()}>
-            <button type="button" className="wish-dialog-close" onClick={() => setSelectedWish(null)} aria-label="Close wish">×</button>
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wish-dialog-title"
+            className="wish-dialog paper-card paper-edge"
+            onClick={(event) => event.stopPropagation()}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') setSelectedWish(null);
+              if (event.key === 'Tab') {
+                event.preventDefault();
+                wishCloseRef.current?.focus();
+              }
+            }}
+          >
+            <button ref={wishCloseRef} type="button" className="wish-dialog-close" onClick={() => setSelectedWish(null)} aria-label="Close wish">×</button>
             <p className="font-hand text-lg text-[#8a8580]">a note from the jar</p>
             <h3 id="wish-dialog-title" className="mt-2 font-serif-display text-3xl text-neutral-900">{selectedWish.destination}</h3>
             <p className="mt-5 whitespace-pre-wrap leading-relaxed text-neutral-700">{selectedWish.message || 'A little dream, folded up and shared.'}</p>
@@ -644,7 +685,7 @@ export function Resume() {
       <div className="mx-auto max-w-5xl">
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
           <div>
-            <SectionLabel>chapter six — on paper</SectionLabel>
+            <SectionLabel>chapter seven — on paper</SectionLabel>
             <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">My journey, so far</h2>
           </div>
           <div className="flex flex-wrap gap-3">
