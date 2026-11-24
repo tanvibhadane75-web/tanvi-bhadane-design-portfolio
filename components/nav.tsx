@@ -1,0 +1,83 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { profile } from '@/lib/content';
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#case-studies', label: 'Case studies' },
+  { href: '#wish-jar', label: 'Wish jar' },
+  { href: '#resume', label: 'Resume' },
+  { href: '#contact', label: 'Contact' },
+];
+
+export function Nav() {
+  const [active, setActive] = useState<string>('');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.querySelector<HTMLElement>(l.href))
+      .filter((s): s is HTMLElement => Boolean(s));
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    );
+    sections.forEach((s) => io.observe(s));
+
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-white/90 backdrop-blur-sm shadow-[0_1px_0_var(--line)]' : 'bg-transparent'
+      }`}
+    >
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-5 py-4 md:px-8" aria-label="Main">
+        <a
+          href="#top"
+          className="font-hand text-2xl leading-none text-neutral-900 transition-transform duration-300 hover:-rotate-2"
+        >
+          {profile.name}
+          <span className="sr-only"> — back to top</span>
+        </a>
+        <ul className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap py-1 md:gap-8">
+          {links.map((link) => {
+            const isActive = active === link.href;
+            return (
+              <li key={link.href} className="relative">
+                <a
+                  href={link.href}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`text-[13px] tracking-wide transition-colors duration-300 hover:text-neutral-900 ${
+                    isActive ? 'text-neutral-900' : 'text-neutral-500'
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -bottom-1.5 left-0 h-px w-full origin-left bg-neutral-900 transition-transform duration-500 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0'
+                    }`}
+                  />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </header>
+  );
+}
