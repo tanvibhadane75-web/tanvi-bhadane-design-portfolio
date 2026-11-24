@@ -27,9 +27,9 @@ export function Hero() {
           className="reveal mt-6 font-serif-display text-[13vw] leading-[1.02] text-neutral-900 sm:text-7xl md:text-8xl lg:text-[7.5rem]"
           style={{ '--reveal-delay': '180ms' } as React.CSSProperties}
         >
-          A little
+          Tanvi
           <br />
-          about <em className="not-italic hand-underline">me</em>
+          <em className="not-italic hand-underline">Bhadane</em>
         </h1>
 
         <div className="mt-12 grid gap-10 md:grid-cols-12">
@@ -37,6 +37,14 @@ export function Hero() {
           <p className="font-serif-display text-2xl text-neutral-900">{hero.intro[0]}</p>
           <p className="mt-2 font-hand text-xl text-[#8a8580]">{hero.intro[1]}</p>
           <p className="mt-4 max-w-md leading-relaxed text-neutral-600">{hero.intro[2]}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-neutral-900 px-5 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#8a7a5c]">
+              Explore my work <span aria-hidden="true">↘</span>
+            </a>
+            <a href="#contact" className="inline-flex items-center border border-[var(--line)] bg-white/80 px-5 py-3 text-sm tracking-wide text-neutral-800 transition-colors hover:border-[#c8684e]">
+              Get in touch
+            </a>
+          </div>
           </div>
 
           <div className="reveal relative md:col-span-4 md:col-start-8" style={{ '--reveal-delay': '440ms' } as React.CSSProperties}>
@@ -54,9 +62,9 @@ export function Hero() {
       </div>
 
       <a
-        href="#about"
-        className="group absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-neutral-400 transition-colors hover:text-neutral-900"
-        aria-label="Scroll to the about section"
+        href="#projects"
+        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral-400 transition-colors hover:text-neutral-900 md:flex"
+        aria-label="Scroll to selected projects"
       >
         <span className="font-hand text-lg">scroll, slowly</span>
         <svg width="14" height="34" viewBox="0 0 14 34" className="animate-drift" aria-hidden="true">
@@ -76,7 +84,7 @@ function HeroStationery() {
       <Doodle kind="ukulele" className="absolute bottom-[18%] left-[9%] h-28 rotate-[12deg] text-[#8d806e]" />
       <div className="sticky-note note-pink note-edge absolute right-[9%] top-[23%] w-36 rotate-6 p-4">
         <span className="tape -top-3 left-6 rotate-6" />
-        <p className="font-hand text-lg leading-tight">make room for the unexpected</p>
+        <p className="font-hand text-lg leading-tight">currently creating ✿</p>
       </div>
     </div>
   );
@@ -88,7 +96,7 @@ export function About() {
       <div className="relative mx-auto max-w-6xl">
         <div className="reveal flex flex-wrap items-end justify-between gap-4">
           <div>
-            <SectionLabel>chapter one — little notes about me</SectionLabel>
+            <SectionLabel>chapter three — little notes about me</SectionLabel>
             <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Collected pieces of me</h2>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-neutral-500">
@@ -137,7 +145,7 @@ export function Beyond() {
     <section id="beyond" className="scroll-mt-24 border-y border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="reveal max-w-2xl">
-          <SectionLabel>chapter two — beyond the screen</SectionLabel>
+          <SectionLabel>chapter seven — beyond the screen</SectionLabel>
           <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">{beyond.heading}</h2>
         </div>
 
@@ -285,7 +293,7 @@ export function DreamWishJar() {
     <section id="wish-jar" className="grid-paper scroll-mt-24 border-y border-[var(--line)] px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="reveal max-w-2xl">
-          <SectionLabel>a little something for the guestbook</SectionLabel>
+          <SectionLabel>chapter six — a little something for the guestbook</SectionLabel>
           <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">A jar full of dreams</h2>
           <p className="mt-2 font-hand text-2xl text-[#a9523d]">Somewhere I&apos;d love to be...</p>
           <p className="mt-4 max-w-xl leading-relaxed text-neutral-600">Everyone has a place they&apos;ve dreamed of visiting. What&apos;s yours?</p>
@@ -430,7 +438,7 @@ export function Currently() {
     <section id="currently" className="scroll-mt-24 px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-4xl">
         <div className="reveal">
-          <SectionLabel>chapter three — right now</SectionLabel>
+          <SectionLabel>a note from right now</SectionLabel>
           <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">What I&apos;m currently up to.</h2>
         </div>
 
@@ -497,10 +505,11 @@ export function Skills() {
   );
 }
 
-function ProjectCover({ title, image, note }: { title: string; image: string; note: string }) {
+function ProjectCover({ title, image, note, index, size }: { title: string; image: string; note: string; index: number; size: (typeof projects)[number]['size'] }) {
+  const proportions = size === 'large' ? 'aspect-[16/10]' : size === 'medium' ? 'aspect-[4/3]' : 'aspect-square';
   return (
-    <div className="project-visual paper-card paper-edge relative overflow-hidden">
-      <div className="project-cover relative aspect-[16/10] w-full overflow-hidden bg-[#f4f0e9]">
+    <div className={`project-visual paper-card paper-edge relative overflow-hidden project-background-${index % 4}`}>
+      <div className={`project-cover project-background-${index % 4} relative ${proportions} w-full overflow-hidden`}>
         <Image
           src={image}
           alt={`${title} project preview`}
@@ -519,9 +528,9 @@ export function Projects() {
     <section id="projects" className="scroll-mt-24 border-t border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="reveal max-w-2xl">
-          <SectionLabel>chapter five — things I&apos;ve made</SectionLabel>
-          <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">A portfolio of small obsessions</h2>
-          <p className="mt-4 leading-relaxed text-neutral-600">A quick look at the things I&apos;ve made. For the story behind the work, <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">visit the case study shelf</a>.</p>
+          <SectionLabel>chapter two — selected projects</SectionLabel>
+          <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Thoughtful work, made with curiosity</h2>
+          <p className="mt-4 leading-relaxed text-neutral-600">A selection of work across product design, data and development. For more detail, <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">open the case study shelf</a>.</p>
         </div>
 
         <div className="mt-16 space-y-16">
@@ -532,7 +541,7 @@ export function Projects() {
               style={{ '--reveal-delay': `${i * 60}ms` } as React.CSSProperties}
             >
               <div className={`${i % 2 === 1 ? 'md:order-2' : ''} md:col-span-7`}>
-                <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} />
+                <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} index={i} size={project.size} />
               </div>
               <div className={`${i % 2 === 1 ? 'md:order-1' : ''} md:col-span-5`}>
                 <ProjectBody project={project} />
@@ -578,7 +587,7 @@ export function CaseStudies() {
       <div className="mx-auto max-w-6xl">
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <SectionLabel>chapter six — the thinking behind the work</SectionLabel>
+            <SectionLabel>project notes — the thinking behind the work</SectionLabel>
             <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Behind the Things I&apos;ve Built</h2>
             <p className="mt-4 leading-relaxed text-neutral-600">Every project starts with a question. Here&apos;s where the thinking happens.</p>
           </div>
@@ -665,7 +674,7 @@ export function Resume() {
       <div className="mx-auto max-w-5xl">
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
           <div>
-            <SectionLabel>chapter seven — on paper</SectionLabel>
+            <SectionLabel>chapter five — on paper</SectionLabel>
             <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">My journey, so far</h2>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -742,7 +751,7 @@ export function AchievementsAndActivities() {
     <section id="activities" className="scroll-mt-24 border-t border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-5xl">
         <div className="reveal max-w-2xl">
-          <SectionLabel>chapter eight — beyond the classroom</SectionLabel>
+          <SectionLabel>chapter five — beyond the classroom</SectionLabel>
           <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Achievements &amp; extracurricular activities</h2>
           <p className="mt-4 leading-relaxed text-neutral-600">A few milestones, teams and communities that have shaped my journey.</p>
         </div>

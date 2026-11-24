@@ -7,14 +7,14 @@ const serif = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' })
 const hand = Caveat({ subsets: ['latin'], variable: '--font-hand' });
 
 export const metadata: Metadata = {
-  title: 'Tanvi Bhadane — A little about me',
+  title: 'Tanvi Bhadane — Technology, Data & Design Portfolio',
   description:
-    'Personal portfolio of Tanvi Bhadane — engineering graduate interested in technology, data and design. Data analytics, UI/UX and creative projects.',
+    'Explore the portfolio of Tanvi Bhadane, an Electronics and Telecommunication engineering graduate interested in UI/UX design, product thinking, data analytics and thoughtful digital experiences.',
   keywords: ['Tanvi Bhadane', 'portfolio', 'data analytics', 'UI/UX', 'web development'],
   openGraph: {
-    title: 'Tanvi Bhadane — A little about me',
+    title: 'Tanvi Bhadane — Technology, Data & Design Portfolio',
     description:
-      'A personal journal-style portfolio: projects, skills and the person behind them.',
+      'A creative journal-style portfolio featuring projects, skills and the person behind them.',
     type: 'website',
   },
 };
