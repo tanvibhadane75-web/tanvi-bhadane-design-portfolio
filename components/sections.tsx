@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import Image from 'next/image';
 import { aboutNotes, beyond, contact, currently, hero, profile, projects, resume, skills } from '@/lib/content';
 import { ArrowDoodle, Doodle } from '@/components/doodles';
 
@@ -496,24 +495,6 @@ export function Skills() {
   );
 }
 
-function ProjectCover({ title, image, note, tall }: { title: string; image: string; note: string; tall?: boolean }) {
-  return (
-    <div className={`group/project-cover project-cover relative w-full overflow-hidden ${tall ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
-      <Image
-        src={image}
-        alt={`Editorial concept illustration for ${title}, not a product screenshot.`}
-        fill
-        sizes="(max-width: 768px) 100vw, 60vw"
-        className="object-cover transition-transform duration-700 group-hover/project-cover:scale-105"
-      />
-      <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 bg-gradient-to-t from-[#302b27]/75 via-[#302b27]/35 to-transparent px-5 pb-4 pt-12">
-        <p className="font-hand text-lg text-white">{note}</p>
-        <span className="text-[9px] uppercase tracking-[0.18em] text-white/85">concept illustration · not a screenshot</span>
-      </div>
-    </div>
-  );
-}
-
 export function Projects() {
   return (
     <section id="projects" className="scroll-mt-24 border-t border-[var(--line)] bg-[#fbf8f2] px-5 py-24 md:px-8 md:py-32">
@@ -524,49 +505,16 @@ export function Projects() {
           <p className="mt-4 leading-relaxed text-neutral-600">A quick look at the things I&apos;ve made. For the story behind the work, <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">visit the case study shelf</a>.</p>
         </div>
 
-        <div className="mt-16 space-y-20">
+        <div className="mt-16 space-y-12">
           {projects.map((project, i) => (
             <article
               key={project.number}
-              className="reveal grid items-center gap-8 md:grid-cols-12 md:gap-12"
-              style={{ '--reveal-delay': '60ms' } as React.CSSProperties}
+              className="reveal border-b border-[var(--line)] pb-10 last:border-b-0"
+              style={{ '--reveal-delay': `${i * 60}ms` } as React.CSSProperties}
             >
-              {project.size === 'large' ? (
-                <>
-                  <div className="project-visual paper-card paper-edge relative overflow-hidden md:col-span-7">
-                    <span className="tape -top-3 left-10 z-10 -rotate-3" aria-hidden="true" />
-                    <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} tall />
-                  </div>
-                  <div className="md:col-span-5">
-                    <ProjectBody project={project} />
-                  </div>
-                </>
-              ) : project.size === 'medium' ? (
-                i % 2 === 0 ? (
-                  <>
-                    <div className="project-visual paper-card paper-edge relative overflow-hidden md:col-span-6">
-                      <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} />
-                    </div>
-                    <div className="md:col-span-6">{<ProjectBody project={project} />}</div>
-                  </>
-                ) : (
-                  <>
-                    <div className="order-2 md:order-1 md:col-span-6">{<ProjectBody project={project} />}</div>
-                    <div className="project-visual paper-card paper-edge relative order-1 overflow-hidden md:order-2 md:col-span-6">
-                      <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} />
-                    </div>
-                  </>
-                )
-              ) : (
-                <>
-                  <div className="project-visual paper-card paper-edge relative overflow-hidden md:col-span-5">
-                    <ProjectCover title={project.title} image={project.coverImage} note={project.coverNote} />
-                  </div>
-                  <div className="md:col-span-7">
-                    <ProjectBody project={project} />
-                  </div>
-                </>
-              )}
+              <div className="max-w-3xl">
+                <ProjectBody project={project} />
+              </div>
             </article>
           ))}
         </div>
