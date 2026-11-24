@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import Image from 'next/image';
-import { aboutNotes, achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
-import { ArrowDoodle, Doodle } from '@/components/doodles';
+import { achievements, beyond, contact, currently, extracurricularActivities, profile, projects, resume, skills } from '@/lib/content';
+import { Doodle } from '@/components/doodles';
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -16,60 +16,29 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export function Hero() {
   return (
-    <section id="top" className="grid-paper relative flex min-h-screen flex-col justify-center overflow-hidden px-5 pb-24 pt-32 md:px-8">
+    <section id="top" className="grid-paper intro-board relative flex min-h-[820px] flex-col items-center overflow-hidden px-5 pb-28 pt-28 md:min-h-screen md:px-8">
       <HeroStationery />
-      <div className="relative mx-auto w-full max-w-6xl">
-        <div className="reveal" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
-          <p className="font-hand text-2xl text-neutral-500">a small journal, kept publicly</p>
-        </div>
-
-        <h1
-          className="reveal mt-6 font-serif-display text-[13vw] leading-[1.02] text-neutral-900 sm:text-7xl md:text-8xl lg:text-[7.5rem]"
-          style={{ '--reveal-delay': '180ms' } as React.CSSProperties}
-        >
-          Tanvi
-          <br />
-          <em className="not-italic hand-underline">Bhadane</em>
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center">
+        <p className="reveal font-hand text-xl text-neutral-500" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
+          a small journal, kept publicly
+        </p>
+        <h1 className="reveal mt-5 font-hand text-[13vw] leading-[0.9] text-neutral-900 sm:text-7xl md:text-8xl lg:text-[7.5rem]" style={{ '--reveal-delay': '180ms' } as React.CSSProperties}>
+          Tanvi Bhadane
         </h1>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <div className="reveal md:col-span-5 md:col-start-1" style={{ '--reveal-delay': '320ms' } as React.CSSProperties}>
-          <p className="font-serif-display text-2xl text-neutral-900">{hero.intro[0]}</p>
-          <p className="mt-2 font-hand text-xl text-[#8a8580]">{hero.intro[1]}</p>
-          <p className="mt-4 max-w-md leading-relaxed text-neutral-600">{hero.intro[2]}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 bg-neutral-900 px-5 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#8a7a5c]">
-              Explore my work <span aria-hidden="true">↘</span>
-            </a>
-            <a href="#contact" className="inline-flex items-center border border-[var(--line)] bg-white/80 px-5 py-3 text-sm tracking-wide text-neutral-800 transition-colors hover:border-[#c8684e]">
-              Get in touch
-            </a>
-          </div>
-          </div>
-
-          <div className="reveal relative md:col-span-4 md:col-start-8" style={{ '--reveal-delay': '440ms' } as React.CSSProperties}>
-            <div className="sticky-note note-edge relative -rotate-1 p-6 pt-8">
-              <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-2" aria-hidden="true" />
-              <p className="font-hand text-lg leading-snug text-neutral-800">{hero.status}</p>
-              <p className="mt-4 font-hand text-base text-neutral-500">— noted on a rainy Tuesday</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="reveal mt-16 hidden md:block" style={{ '--reveal-delay': '560ms' } as React.CSSProperties}>
-          <ArrowDoodle className="ml-auto w-28 rotate-12 text-neutral-400" />
+        <p className="reveal mt-6 text-xs uppercase tracking-[0.32em] text-neutral-500 md:text-sm" style={{ '--reveal-delay': '280ms' } as React.CSSProperties}>
+          I think, then I build
+        </p>
+        <div className="reveal mt-8 flex flex-wrap justify-center gap-3" style={{ '--reveal-delay': '360ms' } as React.CSSProperties}>
+          <a href="#projects" className="inline-flex items-center gap-2 bg-neutral-900 px-5 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#8a7a5c]">
+            Explore my work <span aria-hidden="true">↘</span>
+          </a>
+          <a href="#contact" className="inline-flex items-center border border-[var(--line)] bg-white/85 px-5 py-3 text-sm tracking-wide text-neutral-800 transition-colors hover:border-[#c8684e]">
+            Get in touch
+          </a>
         </div>
       </div>
-
-      <a
-        href="#projects"
-        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral-400 transition-colors hover:text-neutral-900 md:flex"
-        aria-label="Scroll to selected projects"
-      >
-        <span className="font-hand text-lg">scroll, slowly</span>
-        <svg width="14" height="34" viewBox="0 0 14 34" className="animate-drift" aria-hidden="true">
-          <path d="M7 0 V30 M2 25 L7 31 L12 25" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+      <a href="#about" className="relative z-10 mt-10 font-hand text-lg text-neutral-500 transition-colors hover:text-neutral-900" aria-label="Scroll to introduction">
+        a little more about me <span aria-hidden="true">↓</span>
       </a>
     </section>
   );
@@ -77,64 +46,56 @@ export function Hero() {
 
 function HeroStationery() {
   return (
-    <div className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block" aria-hidden="true">
-      <div className="hero-notebook" />
-      <div className="hero-pencil" />
-      <div className="hero-plant" />
-      <Doodle kind="ukulele" className="absolute bottom-[18%] left-[9%] h-28 rotate-[12deg] text-[#8d806e]" />
-      <div className="sticky-note note-pink note-edge absolute right-[9%] top-[23%] w-36 rotate-6 p-4">
-        <span className="tape -top-3 left-6 rotate-6" />
-        <p className="font-hand text-lg leading-tight">currently creating ✿</p>
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div className="intro-card intro-card-profile">
+        <span className="font-hand text-lg">Tanvi</span>
+        <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-neutral-500">engineering · design · data</span>
+        <span className="intro-record mt-4" />
       </div>
+      <div className="intro-card intro-card-project">
+        <Image src="/project-covers/ai-recruiting.png" alt="" fill sizes="(max-width: 768px) 26vw, 180px" className="object-cover" />
+        <span className="intro-project-caption">a thoughtful match</span>
+      </div>
+      <div className="intro-card intro-card-scrap">
+        <p className="font-hand text-lg">what I&apos;m drawn to</p>
+        <p className="mt-3 text-xs leading-relaxed text-neutral-600">Curious questions, thoughtful design, useful technology.</p>
+      </div>
+      <div className="intro-card intro-card-note">
+        <span className="font-hand text-lg">currently exploring</span>
+        <p className="mt-2 text-xs leading-relaxed text-neutral-700">Data analytics, UI/UX and new ways to make ideas useful.</p>
+      </div>
+      <div className="intro-card intro-card-work">
+        <Image src="/project-covers/campburger.png" alt="" fill sizes="(max-width: 768px) 30vw, 210px" className="object-cover" />
+        <span className="intro-project-caption">little details, big feeling</span>
+      </div>
+      <span className="intro-tape intro-tape-one" />
+      <span className="intro-tape intro-tape-two" />
+      <div className="hero-pencil" />
+      <Doodle kind="ukulele" className="absolute bottom-[17%] left-[8%] hidden h-24 rotate-[12deg] text-[#8d806e] md:block" />
     </div>
   );
 }
 
 export function About() {
   return (
-    <section id="about" className="grid-paper scroll-mt-24 px-5 py-24 md:px-8 md:py-32">
-      <div className="relative mx-auto max-w-6xl">
-        <div className="reveal flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <SectionLabel>chapter three — little notes about me</SectionLabel>
-            <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Collected pieces of me</h2>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-neutral-500">
-            Like sticky notes on a wall — each one true, none of them the whole picture.
+    <section id="about" className="grid-paper intro-about scroll-mt-24 px-5 py-24 md:px-8 md:py-32">
+      <div className="relative mx-auto max-w-5xl">
+        <div className="intro-about-note reveal mx-auto max-w-lg" style={{ '--reveal-delay': '100ms' } as React.CSSProperties}>
+          <span className="intro-note-pin" aria-hidden="true" />
+          <p className="font-hand text-xl leading-relaxed text-neutral-800 md:text-2xl">
+            I care about craft, how clearly things communicate, and building thoughtful digital experiences.
           </p>
         </div>
-
-        <div className="pointer-events-none absolute right-2 top-36 hidden h-28 w-44 rotate-6 md:block" aria-hidden="true">
-          <div className="paper-scrap inset-0 rotate-3" />
-          <div className="paper-scrap -inset-2 -rotate-6" />
-          <p className="absolute left-5 top-9 font-hand text-lg text-[#8a8580]">a wall of notes</p>
-          <span className="paper-clip -right-3 -top-4" />
+        <div className="reveal mx-auto mt-16 max-w-3xl text-center" style={{ '--reveal-delay': '220ms' } as React.CSSProperties}>
+          <SectionLabel>here, in a few lines</SectionLabel>
+          <h2 className="mt-3 font-serif-display text-3xl text-neutral-900 md:text-4xl">A little about me</h2>
+          <p className="mx-auto mt-8 max-w-2xl font-mono text-sm leading-8 text-neutral-700 md:text-base">
+            I&apos;m an Electronics and Telecommunication engineering graduate interested in UI/UX design, product thinking and data analytics. I enjoy understanding a problem first, then turning ideas into simple, useful digital experiences.
+          </p>
+          <p className="mt-5 font-hand text-xl text-[#8a8580]">Thoughtful by nature, curious by default.</p>
         </div>
-
-        <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3 [&>*]:mb-6">
-          {aboutNotes.map((note, i) => (
-            <div
-              key={note.label}
-              className={`reveal break-inside-avoid ${note.rotate}`}
-              style={{ '--reveal-delay': `${(i % 3) * 120}ms` } as React.CSSProperties}
-            >
-              {note.style === 'paper' ? (
-                <div className="paper-card paper-edge relative p-6">
-                  <span className="paper-clip -right-2 -top-4" aria-hidden="true" />
-                  <p className="font-hand text-base uppercase tracking-wide text-[#8a8580]">{note.label}</p>
-                  <p className="mt-2 leading-relaxed text-neutral-700">{note.text}</p>
-                </div>
-              ) : (
-                <div className={`sticky-note note-edge relative p-6 pt-8 ${note.style}`}>
-                  <span className="tape -top-3 left-8 -rotate-3" aria-hidden="true" />
-                  <span className="paper-clip -right-2 -top-4" aria-hidden="true" />
-                  <p className="font-hand text-base uppercase tracking-wide text-neutral-500">{note.label}</p>
-                  <p className="mt-2 font-hand text-xl leading-snug text-neutral-800">{note.text}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <div className="intro-about-mark intro-about-mark-left" aria-hidden="true">+</div>
+        <div className="intro-about-mark intro-about-mark-right" aria-hidden="true">+</div>
       </div>
     </section>
   );
