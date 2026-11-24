@@ -158,7 +158,8 @@ export type Project = {
   link: string;
   linkLabel: string;
   size: 'large' | 'medium' | 'small';
-  placeholderNote: string;
+  coverNote: string;
+  coverImage: string;
 };
 
 export const projects: Project[] = [
@@ -173,7 +174,8 @@ export const projects: Project[] = [
     link: 'https://github.com/tanvibhadane75-web',
     linkLabel: 'View on GitHub',
     size: 'large',
-    placeholderNote: 'project screenshot — replace with your own',
+    coverNote: 'a thoughtful match, made easier',
+    coverImage: '/project-covers/ai-recruiting.png',
   },
   {
     number: '02',
@@ -186,7 +188,8 @@ export const projects: Project[] = [
     link: 'https://github.com/tanvibhadane75-web',
     linkLabel: 'View on GitHub',
     size: 'medium',
-    placeholderNote: 'project screenshot — replace with your own',
+    coverNote: 'less repetition, more room to focus',
+    coverImage: '/project-covers/document-generator.png',
   },
   {
     number: '03',
@@ -199,7 +202,8 @@ export const projects: Project[] = [
     link: 'https://github.com/tanvibhadane75-web',
     linkLabel: 'View on GitHub',
     size: 'medium',
-    placeholderNote: 'project screenshot — replace with your own',
+    coverNote: 'making every handoff count',
+    coverImage: '/project-covers/biomedical-waste.png',
   },
   {
     number: '04',
@@ -212,7 +216,8 @@ export const projects: Project[] = [
     link: 'https://github.com/tanvibhadane75-web',
     linkLabel: 'View design',
     size: 'small',
-    placeholderNote: 'design preview — replace with your own',
+    coverNote: 'a little more delight in every order',
+    coverImage: '/project-covers/campburger.png',
   },
 ];
 
