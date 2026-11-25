@@ -21,57 +21,6 @@ export const hero = {
   sideNote: 'currently exploring → data analytics & ui/ux',
 };
 
-export const aboutNotes = [
-  {
-    label: 'education',
-    text: 'B.Tech in Electronics & Telecommunication Engineering — VIIT, Pune.',
-    style: 'note-terracotta' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'also education',
-    text: 'Diploma in Information Technology — Government Polytechnic, Nashik.',
-    style: 'note-yellow' as const,
-    rotate: 'rotate-1',
-  },
-  {
-    label: 'experience',
-    text: 'Interned as a web development intern — built and shipped real, working things for real people.',
-    style: 'paper' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'curiosity no. 1',
-    text: 'Data analytics. I like asking questions of messy data until it answers clearly.',
-    style: 'note-pink' as const,
-    rotate: 'rotate-3',
-  },
-  {
-    label: 'curiosity no. 2',
-    text: 'UI/UX and product design — starting every build from the person using it.',
-    style: 'note-blue' as const,
-    rotate: 'rotate-1',
-  },
-  {
-    label: 'the way i work',
-    text: 'Technical problem-solving, patiently. Understand first, then build.',
-    style: 'paper' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'design head',
-    text: 'Design Head at Institute to Industry Connect (I2IC) — led design initiatives and mentored the team.',
-    style: 'note-orange' as const,
-    rotate: 'rotate-2',
-  },
-  {
-    label: 'outside the screen',
-    text: 'NSS Volunteer — community service, awareness campaigns and environmental initiatives.',
-    style: 'note-lime' as const,
-    rotate: '-rotate-3',
-  },
-];
-
 export type DoodleKind = 'strings' | 'ukulele' | 'portrait' | 'palette' | 'sun' | 'book' | 'sparkle';
 
 export const beyond = {
@@ -129,6 +78,11 @@ export const currently = [
 
 export const skills = [
   {
+    group: 'Design',
+    note: 'where things feel right',
+    items: ['Figma', 'Canva', 'UI Design', 'Typography', 'Layout', 'Visual Design'],
+  },
+  {
     group: 'Development',
     note: 'where things get built',
     items: ['Python', 'SQL', 'HTML', 'CSS', 'PHP', 'FastAPI', 'Next.js'],
@@ -137,11 +91,6 @@ export const skills = [
     group: 'Data & Analytics',
     note: 'where things make sense',
     items: ['Pandas', 'NumPy', 'Matplotlib', 'Data Cleaning', 'Data Analysis', 'PostgreSQL', 'MySQL'],
-  },
-  {
-    group: 'Design',
-    note: 'where things feel right',
-    items: ['Figma', 'Canva', 'UI Design', 'Typography', 'Layout & Visual Design'],
   },
   {
     group: 'Tools',
@@ -182,19 +131,19 @@ export const projects: Project[] = [
     coverImage: '/project-covers/ai-recruiting.png',
   },
   {
-    slug: 'document-generator',
+    slug: 'campburger-food-ordering',
     number: '02',
-    title: 'Document Generator',
+    title: 'CampBurger — Food Ordering App',
     description:
-      'An application developed to automate Bonafide Certificates, Leaving Certificates and Form 15A generation using student roll numbers.',
+      'A UI/UX project focused on a food ordering experience, including menu navigation, cart and checkout.',
     contribution:
-      'Built the full web application and database, automating a repetitive college administrative workflow end to end.',
-    tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
-    link: 'https://github.com/Student-section-project/DocumentGenerator',
-    linkLabel: 'View on GitHub',
-    size: 'medium',
-    coverNote: 'less repetition, more room to focus',
-    coverImage: '/project-covers/document-generator.png',
+      'Designed a clean, simple mobile ordering flow with a focus on smooth navigation between menu, cart and checkout.',
+    tags: ['Figma', 'UI/UX', 'Mobile'],
+    link: 'https://www.figma.com/design/6dlNjMgQ3ocnTB9AhGPBCf/Camp-Burger',
+    linkLabel: 'View in Figma',
+    size: 'small',
+    coverNote: 'a little more delight in every order',
+    coverImage: '/project-covers/campburger.png',
   },
   {
     slug: 'biomedical-waste-management',
@@ -212,19 +161,19 @@ export const projects: Project[] = [
     coverImage: '/project-covers/biomedical-waste.png',
   },
   {
-    slug: 'campburger-food-ordering',
+    slug: 'document-generator',
     number: '04',
-    title: 'CampBurger — Food Ordering App',
+    title: 'Document Generator',
     description:
-      'A UI/UX project focused on a food ordering experience, including menu navigation, cart and checkout.',
+      'An application developed to automate Bonafide Certificates, Leaving Certificates and Form 15A generation using student roll numbers.',
     contribution:
-      'Designed a clean, simple mobile ordering flow with a focus on smooth navigation between menu, cart and checkout.',
-    tags: ['Figma', 'UI/UX', 'Mobile'],
-    link: 'https://www.figma.com/design/6dlNjMgQ3ocnTB9AhGPBCf/Camp-Burger',
-    linkLabel: 'View in Figma',
-    size: 'small',
-    coverNote: 'a little more delight in every order',
-    coverImage: '/project-covers/campburger.png',
+      'Built the full web application and database, automating a repetitive college administrative workflow end to end.',
+    tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
+    link: 'https://github.com/Student-section-project/DocumentGenerator',
+    linkLabel: 'View on GitHub',
+    size: 'medium',
+    coverNote: 'less repetition, more room to focus',
+    coverImage: '/project-covers/document-generator.png',
   },
 ];
 

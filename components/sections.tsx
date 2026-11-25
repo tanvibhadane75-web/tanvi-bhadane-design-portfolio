@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import useSWR from 'swr';
-import { aboutNotes, achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
+import { achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
 import { Doodle } from '@/components/doodles';
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -111,49 +111,74 @@ function HeroStationery() {
 }
 
 export function About() {
+  const aboutFacts = [
+    { text: 'Curious by nature', tone: 'note-yellow' },
+    { text: 'UI/UX and product design', tone: 'note-blue' },
+    { text: 'Music, singing and a little ukulele', tone: 'note-pink' },
+    { text: 'Sunrises, sunsets and photography', tone: 'note-lime' },
+    { text: 'Books, stories and mythology', tone: 'note-terracotta' },
+  ];
+
   return (
     <section id="about" className="grid-paper scroll-mt-24 px-5 py-24 md:px-8 md:py-32">
-      <div className="relative mx-auto max-w-6xl">
-        <div className="reveal flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <SectionLabel>chapter three — little notes about me</SectionLabel>
-            <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Collected pieces of me</h2>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-neutral-500">
-            Like sticky notes on a wall — each one true, none of them the whole picture.
+      <div className="mx-auto max-w-6xl">
+        <header className="reveal relative">
+          <SectionLabel>chapter one — pages from my journal</SectionLabel>
+          <h2 className="mt-3 font-serif-display text-4xl md:text-5xl">A little more about me...</h2>
+          <p className="mt-4 max-w-2xl leading-relaxed">
+            The person behind the notes, the sketches and the things I make.
           </p>
-        </div>
+          <span className="flower-sticker absolute right-8 top-2 hidden rotate-12 md:block" aria-hidden="true" />
+        </header>
 
-        <div className="pointer-events-none absolute right-2 top-36 hidden h-28 w-44 rotate-6 md:block" aria-hidden="true">
-          <div className="paper-scrap inset-0 rotate-3" />
-          <div className="paper-scrap -inset-2 -rotate-6" />
-          <p className="absolute left-5 top-9 font-hand text-lg text-[#8a8580]">a wall of notes</p>
-          <span className="paper-clip -right-3 -top-4" />
-        </div>
+        <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-[22rem]">
+            <figure className="about-polaroid paper-card paper-edge relative rotate-2 p-3 pb-5 transition-transform duration-500 hover:rotate-0">
+              <span className="tape tape-pink left-[18%] top-0 rotate-3" aria-hidden="true" />
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#d5cec5]">
+                <Image
+                  src="/portfolio/tanvi-portrait.jpeg"
+                  alt="Tanvi standing in a tropical garden"
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 352px"
+                  className="object-cover object-center"
+                />
+              </div>
+              <figcaption className="pt-3 text-center font-hand text-lg">a curious mind, collecting little details</figcaption>
+              <span className="paper-clip -right-2 top-8" aria-hidden="true" />
+            </figure>
+            <span className="sticky-note note-lime note-edge absolute -bottom-5 -left-5 rotate-[-5deg] px-4 py-3 font-hand text-lg text-[#34312f] shadow-lg">curious by nature</span>
+            <span className="absolute -right-4 top-8 rotate-12 font-hand text-3xl text-[#D9AEB2]" aria-hidden="true">✳</span>
+          </div>
 
-        <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3 [&>*]:mb-6">
-          {aboutNotes.map((note, i) => (
-            <div
-              key={note.label}
-              className={`reveal break-inside-avoid ${note.rotate}`}
-              style={{ '--reveal-delay': `${(i % 3) * 120}ms` } as React.CSSProperties}
-            >
-              {note.style === 'paper' ? (
-                <div className="paper-card paper-edge relative p-6">
-                  <span className="paper-clip -right-2 -top-4" aria-hidden="true" />
-                  <p className="font-hand text-base uppercase tracking-wide text-[#8a8580]">{note.label}</p>
-                  <p className="mt-2 leading-relaxed text-neutral-700">{note.text}</p>
-                </div>
-              ) : (
-                <div className={`sticky-note note-edge relative p-6 pt-8 ${note.style}`}>
-                  <span className="tape -top-3 left-8 -rotate-3" aria-hidden="true" />
-                  <span className="paper-clip -right-2 -top-4" aria-hidden="true" />
-                  <p className="font-hand text-base uppercase tracking-wide text-neutral-500">{note.label}</p>
-                  <p className="mt-2 font-hand text-xl leading-snug text-neutral-800">{note.text}</p>
-                </div>
-              )}
-            </div>
-          ))}
+          <div className="relative">
+            <article className="paper-card paper-edge relative p-6 md:p-9">
+              <span className="tape tape-pink -top-3 left-10 -rotate-2" aria-hidden="true" />
+              <span className="paper-clip -right-2 -top-3" aria-hidden="true" />
+              <p className="font-hand text-lg text-[#8a5e4b]">a note about the path so far</p>
+              <h3 className="mt-2 font-serif-display text-2xl md:text-3xl">Design, technology and the joy of figuring things out.</h3>
+              <p className="mt-4 leading-relaxed">
+                I&apos;m Tanvi Bhadane, an engineering graduate interested in design, technology and creative problem-solving. I like understanding people and turning ideas into useful digital experiences.
+              </p>
+              <p className="mt-4 leading-relaxed">
+                My journey began with a Diploma in Information Technology from Government Polytechnic Nashik, followed by a B.Tech in Electronics and Telecommunication Engineering from VIIT Pune. Along the way, I gained web development internship experience, served as Design Head at I2IC and volunteered with NSS.
+              </p>
+            </article>
+
+            <aside className="mt-8 rotate-[-1deg]" aria-labelledby="about-facts-title">
+              <div className="sticky-note note-yellow note-edge relative p-5 pt-7 shadow-lg md:p-6 md:pt-8">
+                <span className="tape tape-pink -top-3 left-9 rotate-2" aria-hidden="true" />
+                <h3 id="about-facts-title" className="font-hand text-2xl text-[#34312f]">A few things about me</h3>
+                <ul className="mt-4 flex flex-wrap gap-2.5">
+                  {aboutFacts.map((fact) => (
+                    <li key={fact.text} className={`note-edge px-3 py-2 font-hand text-lg leading-tight text-[#34312f] ${fact.tone}`}>
+                      {fact.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
@@ -541,41 +566,49 @@ export function Currently() {
 }
 
 export function Skills() {
+  const sheetTones = ['note-pink', 'note-blue', 'note-lime', 'note-yellow'] as const;
+  const labelTones = ['bg-[#F5EFE5]', 'bg-[#E9D18E]', 'bg-[#A9BBD0]', 'bg-[#D9AEB2]'] as const;
+  const labelTilts = ['-rotate-1', 'rotate-1', 'rotate-0', '-rotate-2'] as const;
+
   return (
     <section id="skills" className="scroll-mt-24 px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="reveal flex flex-wrap items-end justify-between gap-4">
           <div>
             <SectionLabel>chapter four — the toolkit</SectionLabel>
-            <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">An index of things I use</h2>
+            <h2 className="mt-3 font-serif-display text-4xl md:text-5xl">Things in my creative toolbox.</h2>
           </div>
-          <p className="font-hand text-xl text-neutral-500">no percentages, no bars — just honest lists</p>
+          <p className="font-hand text-xl">no percentages, no bars — just honest lists</p>
         </div>
 
-        <dl className="mt-12 divide-y divide-[var(--line)] border-t border-[var(--line)]">
+        <div className="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
           {skills.map((group, i) => (
-            <div
+            <article
               key={group.group}
-              className="reveal grid gap-3 py-8 md:grid-cols-12 md:items-baseline"
+              aria-labelledby={`skill-group-${i}`}
+              className={`sticky-note note-edge reveal relative p-6 pt-8 shadow-[0_14px_28px_-18px_rgba(0,0,0,.55)] md:p-8 md:pt-10 ${sheetTones[i % sheetTones.length]} ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}
               style={{ '--reveal-delay': `${i * 90}ms` } as React.CSSProperties}
             >
-              <dt className="md:col-span-4">
-                <span className="font-serif-display text-2xl text-neutral-900">{group.group}</span>
-                <span className="ml-3 font-hand text-base text-[#b6a88f]">{group.note}</span>
-              </dt>
-              <dd className="flex flex-wrap gap-x-3 gap-y-2 md:col-span-8">
-                {group.items.map((item) => (
-                  <span
+              <span className="tape tape-pink -top-3 left-10 -rotate-2" aria-hidden="true" />
+              <span className="paper-clip -right-2 -top-3" aria-hidden="true" />
+              <p className="font-hand text-base uppercase tracking-wide text-[#6f5d52]">toolkit sheet 0{i + 1}</p>
+              <div className="mt-1 flex flex-wrap items-baseline justify-between gap-2">
+                <h3 id={`skill-group-${i}`} className="font-serif-display text-2xl text-[#34312f] md:text-3xl">{group.group}</h3>
+                <span className="font-hand text-lg text-[#625c55]">{group.note}</span>
+              </div>
+              <ul className="mt-6 flex flex-wrap gap-2.5" aria-label={`${group.group} skills`}>
+                {group.items.map((item, itemIndex) => (
+                  <li
                     key={item}
-                    className="border border-[var(--line)] bg-white px-3 py-1 text-sm text-neutral-700 transition-colors duration-300 hover:border-[#ddd0bb] hover:bg-[#f6f1e8]"
+                    className={`border border-[#34312f]/10 px-3 py-1.5 font-hand text-lg leading-none text-[#34312f] shadow-[0_3px_8px_-6px_rgba(0,0,0,.45)] transition-transform hover:-translate-y-0.5 ${labelTones[(itemIndex + i) % labelTones.length]} ${labelTilts[(itemIndex + i) % labelTilts.length]}`}
                   >
                     {item}
-                  </span>
+                  </li>
                 ))}
-              </dd>
-            </div>
+              </ul>
+            </article>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );
@@ -583,8 +616,12 @@ export function Skills() {
 
 function ProjectCover({ slug, title, image, note, index, size }: { slug: string; title: string; image: string; note: string; index: number; size: (typeof projects)[number]['size'] }) {
   const proportions = size === 'large' ? 'aspect-[16/10]' : size === 'medium' ? 'aspect-[4/3]' : 'aspect-square';
+  const tilts = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'] as const;
+
   return (
-    <div className={`project-visual paper-card paper-edge relative overflow-hidden project-background-${index % 4}`}>
+    <div className={`project-visual paper-card paper-edge relative overflow-visible project-background-${index % 4} ${tilts[index % tilts.length]}`}>
+      <span className="tape tape-pink left-[18%] top-0 rotate-3" aria-hidden="true" />
+      <span className="paper-clip -right-2 top-5" aria-hidden="true" />
       <a href={`/projects/${slug}`} className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#9c604e]" aria-label={`Open the ${title} project file`}>
         <div className={`project-cover project-background-${index % 4} relative ${proportions} w-full overflow-hidden`}>
           <Image
@@ -607,8 +644,8 @@ export function Projects() {
       <div className="mx-auto max-w-6xl">
         <div className="reveal max-w-2xl">
           <SectionLabel>chapter two — selected projects</SectionLabel>
-          <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Thoughtful work, made with curiosity</h2>
-          <p className="mt-4 leading-relaxed text-neutral-600">A selection of work across product design, data and development. For more detail, <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">open the case study shelf</a>.</p>
+          <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">Things I&apos;ve made along the way.</h2>
+          <p className="mt-4 leading-relaxed text-neutral-600">A few projects from my notebooks, each a different mix of design, data and development. <a className="hand-underline transition-colors hover:text-[#a9523d]" href="#case-studies">Browse the project files</a>.</p>
         </div>
 
         <div className="mt-16 space-y-16">
@@ -622,7 +659,7 @@ export function Projects() {
                 <ProjectCover slug={project.slug} title={project.title} image={project.coverImage} note={project.coverNote} index={i} size={project.size} />
               </div>
               <div className={`${i % 2 === 1 ? 'md:order-1' : ''} md:col-span-5`}>
-                <ProjectBody project={project} />
+                <ProjectBody project={project} index={i} />
               </div>
             </article>
           ))}
@@ -634,8 +671,9 @@ export function Projects() {
 
 const reservedCaseStudies = [
   { slug: 'ai-recruiting-agent', number: '01' },
-  { slug: 'biomedical-waste-management', number: '02' },
-  { slug: 'document-generator', number: '03' },
+  { slug: 'campburger-food-ordering', number: '02' },
+  { slug: 'biomedical-waste-management', number: '03' },
+  { slug: 'document-generator', number: '04' },
 ];
 
 const futureCaseStudySections = [
@@ -664,9 +702,10 @@ export function CaseStudies() {
           <a href="#projects" className="hand-underline mb-1 font-hand text-lg text-neutral-700">Back to the project overview</a>
         </div>
 
-        <div className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
           {studies.map(({ project, number }, index) => (
-            <article key={project.slug} className="case-study-card reveal" style={{ '--reveal-delay': `${index * 100}ms` } as React.CSSProperties}>
+            <article key={project.slug} className={`case-study-card paper-edge reveal relative ${index % 2 === 0 ? '-rotate-1' : 'rotate-1'}`} style={{ '--reveal-delay': `${index * 100}ms` } as React.CSSProperties}>
+              <span className="tape tape-pink absolute left-[18%] top-0 z-10 rotate-3" aria-hidden="true" />
               <a href={`/projects/${project.slug}`} className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9c604e]" aria-label={`View available project details for ${project.title}`}>
                 <div className={`case-cover case-cover-image project-background-${index}`}>
                   <Image src={project.coverImage} alt={`${project.title} project screen`} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-contain p-3" />
@@ -683,9 +722,9 @@ export function CaseStudies() {
                 </div>
               </a>
               <div className="px-5 pb-5">
-                <span className="case-coming-soon">Case study coming soon</span>
+                <span className="case-coming-soon">Project file preview</span>
                 <details className="case-reserved mt-4">
-                  <summary>Reserved for the full story</summary>
+                  <summary>What&apos;s not documented here yet</summary>
                   <ul className="mt-3 space-y-1.5 text-sm text-neutral-600">
                     {futureCaseStudySections.map((topic) => <li key={topic}>— {topic}</li>)}
                   </ul>
@@ -700,7 +739,9 @@ export function CaseStudies() {
   );
 }
 
-function ProjectBody({ project }: { project: (typeof projects)[number] }) {
+function ProjectBody({ project, index }: { project: (typeof projects)[number]; index: number }) {
+  const tagTones = ['bg-[#F5EFE5]', 'bg-[#E9D18E]', 'bg-[#A9BBD0]', 'bg-[#D9AEB2]'] as const;
+
   return (
     <div>
       <div className="flex items-baseline gap-4">
@@ -719,14 +760,14 @@ function ProjectBody({ project }: { project: (typeof projects)[number] }) {
       ) : null}
       <ul className="mt-5 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <li key={tag} className="border border-[var(--line)] bg-white px-2.5 py-1 text-xs text-neutral-600">
+          <li key={tag} className={`border border-[#34312f]/10 px-2.5 py-1 text-xs text-[#34312f] ${tagTones[(index + project.tags.indexOf(tag)) % tagTones.length]}`}>
             {tag}
           </li>
         ))}
       </ul>
       <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
         <a href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 border-b border-neutral-900 pb-1 text-sm tracking-wide text-neutral-900 transition-colors hover:text-[#8a7a5c]">
-          Read project notes
+          View case study
           <svg width="16" height="16" viewBox="0 0 16 16" className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
             <path d="M2 8 H13 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>

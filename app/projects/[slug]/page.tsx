@@ -32,7 +32,7 @@ export default async function ProjectCaseFile({ params }: PageProps) {
   if (!project) notFound()
 
   return (
-    <main className="min-h-svh bg-[#faf6ef] px-5 py-10 md:px-8 md:py-16">
+    <main className="case-file grid-paper min-h-svh px-5 py-10 md:px-8 md:py-16">
       <article className="mx-auto max-w-5xl">
         <Link href="/#case-studies" className="font-hand text-xl text-[#766c62] transition-colors hover:text-[#9c604e]">← back to all case files</Link>
         <header className="mt-10 grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] md:items-end">
@@ -46,7 +46,7 @@ export default async function ProjectCaseFile({ params }: PageProps) {
           </div>
         </header>
 
-        <div className="mt-12 grid gap-8 border-y border-[#dfd5c8] py-8 md:grid-cols-12">
+        <div className="mt-12 grid gap-8 border-y border-[#383838] py-8 md:grid-cols-12">
           <section className="md:col-span-7" aria-labelledby="project-context-title">
             <p className="font-hand text-xl text-[#8a6c57]">the project, in a nutshell</p>
             <h2 id="project-context-title" className="mt-2 font-serif-display text-2xl text-[#34312f]">Context &amp; intent</h2>
@@ -67,14 +67,14 @@ export default async function ProjectCaseFile({ params }: PageProps) {
         </section>
 
         {project.futureScope && (
-          <section className="mt-10 border-l-2 border-[#b77c64] bg-[#f3ece2] px-5 py-5" aria-labelledby="future-scope-title">
+          <section className="case-note mt-10 border-l-2 border-[#b77c64] bg-[#f3ece2] px-5 py-5" aria-labelledby="future-scope-title">
             <p className="font-hand text-xl text-[#8a6c57]">looking ahead</p>
             <h2 id="future-scope-title" className="mt-1 font-serif-display text-xl text-[#34312f]">Future scope</h2>
             <p className="mt-2 leading-relaxed text-[#625c55]">{project.futureScope}</p>
           </section>
         )}
 
-        <aside className="mt-12 border-t border-[#dfd5c8] pt-6" aria-label="Case study source note">
+        <aside className="mt-12 border-t border-[#383838] pt-6" aria-label="Case study source note">
           <p className="max-w-3xl text-sm leading-relaxed text-[#766c62]">This case file reflects the project summary, contribution and visuals present in the portfolio. Detailed research notes, user flows, testing records and measured outcomes were not included in the source materials, so they are not represented here.</p>
           {project.link && (
             <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-[#34312f] pb-1 text-sm text-[#34312f] hover:text-[#9c604e]">

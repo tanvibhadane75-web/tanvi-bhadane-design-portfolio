@@ -233,7 +233,10 @@ main > section {
 }
 
 main > section:not(.grid-paper) {
-  background-image: radial-gradient(ellipse at 12% 8%, rgba(217, 183, 165, 0.045), transparent 42%);
+  background-image:
+    linear-gradient(to right, rgba(245, 239, 229, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 239, 229, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 main > section h1,
@@ -1005,4 +1008,23 @@ main > section .resume-paper a {
 @media (prefers-reduced-motion: reduce) {
   .case-study-card, .journal-signoff, .wish-dialog, .jar-glass, .jar-shake, .project-visual, .project-cover img, .wish-note-featured, .wish-note-visitor { animation: none; transition: none; }
   .case-study-card:hover, .project-visual:hover { transform: none; }
+}
+
+.case-file {
+  color: #d5cec5;
+}
+.case-file h1,
+.case-file h2,
+.case-file h3 {
+  color: #f5efe5;
+}
+.case-file p {
+  color: #d5cec5;
+}
+.case-file a {
+  color: #e6c7a8;
+}
+.case-file .case-note h2,
+.case-file .case-note p {
+  color: #34312f;
 }

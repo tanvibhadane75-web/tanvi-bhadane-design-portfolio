@@ -6,8 +6,9 @@ import { profile } from '@/lib/content';
 const links = [
   { href: '#projects', label: 'Work' },
   { href: '#about', label: 'About' },
-  { href: '#resume', label: 'Resume' },
+  { href: '#skills', label: 'Skills' },
   { href: '#resume-experience', label: 'Experience' },
+  { href: '#resume', label: 'Resume' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -72,14 +73,14 @@ export function Nav() {
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={isActive ? 'true' : undefined}
-                  className={`text-[13px] tracking-wide transition-colors duration-300 hover:text-neutral-900 ${
+                  className={`text-[13px] tracking-wide transition-colors duration-300 hover:text-[#E9D18E] ${
                     isActive ? 'text-neutral-100' : 'text-neutral-400'
                   }`}
                 >
                   {link.label}
                   <span
                     aria-hidden="true"
-                    className={`absolute -bottom-1.5 left-0 h-px w-full origin-left bg-neutral-900 transition-transform duration-500 ${
+                    className={`absolute -bottom-1.5 left-0 h-px w-full origin-left bg-[#E9D18E] transition-transform duration-500 ${
                       isActive ? 'scale-x-100' : 'scale-x-0'
                     }`}
                   />
