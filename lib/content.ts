@@ -10,11 +10,11 @@ export const profile = {
 };
 
 export const hero = {
-  heading: 'A little about me',
+  heading: "Hello, I'm Tanvi!",
   intro: [
-    "Hi, I'm Tanvi.",
-    'Designer, problem solver & curious learner.',
-    'I\'m an Electronics and Telecommunication engineering graduate interested in UI/UX design, product thinking and data analytics. I enjoy understanding problems and turning ideas into simple, useful digital experiences.',
+    "Hello, I'm Tanvi!",
+    'A curious mind, a creative heart.',
+    'I\'m an Electronics and Telecommunication engineering graduate drawn to design, technology and creative problem-solving. I enjoy understanding a challenge and turning ideas into clear, useful digital experiences.',
   ],
   status:
     'Currently learning data analytics, exploring UI/UX and looking for opportunities to grow, create and learn.',

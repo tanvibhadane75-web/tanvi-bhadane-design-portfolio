@@ -23,14 +23,50 @@ export function Hero() {
   ];
 
   return (
-    <section id="top" className="grid-paper relative flex min-h-[calc(100svh-1px)] flex-col justify-center overflow-hidden px-5 pb-8 pt-24 md:px-8 md:pt-24">
+    <section id="top" className="grid-paper relative flex min-h-[100svh] flex-col overflow-hidden px-5 pb-8 pt-24 md:px-8">
       <HeroStationery />
-      <div className="relative mx-auto w-full max-w-6xl">
-        <div className="reveal" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
-          <p className="font-hand text-xl text-[#81766c] md:text-2xl">{hero.intro[0]} <span className="text-base md:text-lg">— a little journal of a curious mind</span></p>
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center">
+        <div className="grid flex-1 items-center gap-10 py-8 md:grid-cols-[1.08fr_.92fr] md:gap-12 md:py-10">
+          <div className="reveal is-visible" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
+            <p className="hero-kraft-label">FIELD NOTES <span aria-hidden="true">/</span> A PERSONAL JOURNAL</p>
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#a8b8a0] bg-[#e9efe6] px-3 py-1.5 text-xs font-medium tracking-wide text-[#4f6550]">
+              <span className="size-2 rounded-full bg-[#728c70]" aria-hidden="true" />
+              Open to opportunities
+            </p>
+            <h1 className="mt-4 font-hand text-[clamp(3.6rem,7.1vw,6.5rem)] leading-[0.9] text-[#34312f]">{hero.intro[0]}</h1>
+            <p className="mt-5 max-w-xl font-serif-display text-2xl leading-snug text-[#625c55] md:text-3xl">{hero.intro[1]}</p>
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-[#625c55] md:text-base">{hero.intro[2]}</p>
+            <p className="mt-4 max-w-lg font-hand text-lg leading-snug text-[#8a6c57]">{hero.status}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#projects" className="inline-flex min-h-11 items-center gap-2 bg-[#34312f] px-5 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#b77c64]">
+                Explore my work <span aria-hidden="true">↘</span>
+              </a>
+              <a href="#about" className="inline-flex min-h-11 items-center border border-[#cfc3b4] bg-[#fffdf8] px-5 py-3 text-sm tracking-wide text-[#34312f] transition-colors hover:border-[#b77c64]">
+                Get to know me
+              </a>
+            </div>
+            <p className="mt-6 font-hand text-base text-[#8a6c57]">Pune, India <span aria-hidden="true">·</span> collecting ideas</p>
+          </div>
+
+          <aside className="reveal is-visible relative mx-auto w-full max-w-[25rem] md:max-w-none" style={{ '--reveal-delay': '220ms' } as React.CSSProperties} aria-label="Portrait and notes about Tanvi">
+            <div className="hero-sage-paper" aria-hidden="true" />
+            <figure className="hero-polaroid paper-edge relative mx-auto w-[min(100%,20rem)] rotate-2 p-3 pb-5 sm:w-[min(100%,22rem)]">
+              <span className="tape tape-pink -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden="true" />
+              <div className="photo-placeholder flex aspect-[4/5] flex-col items-center justify-center gap-3 border border-dashed border-[#b9a995] px-4 text-center" role="img" aria-label="Portrait photo of Tanvi to be added when the image is available">
+                <Doodle kind="portrait" className="h-24 text-[#81766c]" />
+                <span className="font-hand text-xl text-[#766c62]">Tanvi&apos;s portrait goes here</span>
+              </div>
+              <figcaption className="pt-3 text-center font-hand text-lg text-[#34312f]">a curious mind, collecting little details</figcaption>
+            </figure>
+            <div className="mt-4 flex flex-wrap justify-center gap-2 md:mt-0 md:block">
+              <span className="hero-floating-label hero-label-design md:absolute md:-left-7 md:top-[22%]">Design &amp; Creativity</span>
+              <span className="hero-floating-label hero-label-tech md:absolute md:right-2 md:top-[44%]">Technology Explorer</span>
+              <span className="hero-floating-label hero-label-curious md:absolute md:-left-4 md:bottom-[18%]">Curious by Nature</span>
+            </div>
+          </aside>
         </div>
 
-        <nav className="reveal is-visible mt-4 grid grid-cols-3 gap-2 sm:gap-3" aria-label="Start here" style={{ '--reveal-delay': '420ms' } as React.CSSProperties}>
+        <nav className="reveal is-visible mt-4 grid grid-cols-3 gap-2 sm:gap-3" aria-label="Start here" style={{ '--reveal-delay': '360ms' } as React.CSSProperties}>
           {quickLinks.map((link, index) => (
             <a
               key={link.title}
@@ -49,47 +85,6 @@ export function Hero() {
             </a>
           ))}
         </nav>
-
-        <div className="mt-4 grid gap-6 md:grid-cols-12 md:items-start md:gap-8">
-          <div className="reveal is-visible md:col-span-8" style={{ '--reveal-delay': '160ms' } as React.CSSProperties}>
-            <h1 className="font-serif-display text-[clamp(3.1rem,6.4vw,5rem)] leading-[1] text-[#34312f]">
-              Tanvi <span className="hand-underline">Bhadane</span>
-            </h1>
-            <p className="mt-1 font-hand text-lg text-[#766c62]">{hero.intro[1]}</p>
-            <p className="mt-3 font-serif-display text-2xl text-[#34312f] md:text-3xl">I think, then I build.</p>
-            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[#625c55]">
-              {hero.intro[2]}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a href="#projects" className="inline-flex min-h-11 items-center gap-2 bg-[#34312f] px-5 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#9c604e]">
-                Explore my work <span aria-hidden="true">↘</span>
-              </a>
-              <a href="#about" className="inline-flex min-h-11 items-center border border-[#cfc3b4] bg-[#fffdf8] px-5 py-3 text-sm tracking-wide text-[#34312f] transition-colors hover:border-[#9c604e]">
-                Get to know me
-              </a>
-            </div>
-          </div>
-
-          <aside className="reveal is-visible relative mx-auto w-full max-w-[15rem] md:col-span-3 md:col-start-10" style={{ '--reveal-delay': '300ms' } as React.CSSProperties} aria-label="A little introduction card">
-            <div className="paper-card paper-edge relative rotate-2 p-3 pb-4">
-              <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden="true" />
-              <div className="photo-placeholder flex aspect-[4/3] flex-col items-center justify-center gap-2 border border-dashed border-[#b9a995] text-center" role="img" aria-label="A framed placeholder for Tanvi's portrait">
-                <Doodle kind="portrait" className="h-16 text-[#81766c]" />
-                <span className="font-hand text-base text-[#766c62]">a little portrait goes here</span>
-              </div>
-              <div className="flex items-end justify-between gap-3 pt-3">
-                <div>
-                  <p className="font-hand text-lg text-[#34312f]">Tanvi&apos;s field notes</p>
-                  <p className="mt-1 text-xs leading-relaxed text-[#766c62]">{profile.role}</p>
-                </div>
-                <Doodle kind="sparkle" className="h-7 w-7" />
-              </div>
-            </div>
-            <p className="mt-4 font-hand text-sm leading-snug text-[#8a6c57]">{hero.status}</p>
-            <p className="mt-2 font-hand text-sm text-[#8a6c57]">Pune, India · collecting ideas</p>
-          </aside>
-        </div>
-
       </div>
     </section>
   );
@@ -97,13 +92,13 @@ export function Hero() {
 
 function HeroStationery() {
   return (
-    <div className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block" aria-hidden="true">
-      <div className="hero-notebook" />
-      <div className="hero-pencil" />
-      <div className="hero-plant" />
-      <div className="sticky-note note-yellow note-edge absolute right-[5%] top-[18%] w-36 rotate-6 p-4">
-        <span className="tape -top-3 left-6 rotate-6" />
-        <p className="font-hand text-lg leading-tight">currently creating <span className="flower-sticker" aria-hidden="true" /></p>
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <span className="hero-flower-sticker absolute left-[3%] top-[12%] hidden md:block" />
+      <span className="hero-wood-heart absolute bottom-[12%] left-[4%] hidden md:block">♥</span>
+      <span className="hero-camera-sticker absolute bottom-[9%] right-[4%] hidden md:block"><i /></span>
+      <div className="sticky-note note-yellow note-edge absolute right-[5%] top-[18%] hidden w-36 rotate-6 p-4 md:block">
+        <span className="tape tape-pink -top-3 left-6 rotate-6" />
+        <p className="font-hand text-lg leading-tight">made with curiosity <span className="flower-sticker" /></p>
       </div>
     </div>
   );
