@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react';
 import { profile } from '@/lib/content';
 
 const links = [
-  { href: '#projects', label: 'Projects' },
   { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#resume', label: 'Experience' },
-  { href: '#wish-jar', label: 'Wish jar' },
-  { href: '#beyond', label: 'Beyond work' },
+  { href: '#projects', label: 'Work' },
+  { href: '#beyond', label: 'Playground' },
+  { href: '#resume', label: 'Resume' },
   { href: '#contact', label: 'Contact' },
 ];
 

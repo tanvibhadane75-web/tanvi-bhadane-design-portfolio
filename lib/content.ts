@@ -151,6 +151,7 @@ export const skills = [
 ];
 
 export type Project = {
+  slug: string;
   number: string;
   title: string;
   description: string;
@@ -166,6 +167,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'ai-recruiting-agent',
     number: '01',
     title: 'AI Recruiting Agent',
     description:
@@ -180,6 +182,7 @@ export const projects: Project[] = [
     coverImage: '/project-covers/ai-recruiting.png',
   },
   {
+    slug: 'document-generator',
     number: '02',
     title: 'Document Generator',
     description:
@@ -194,6 +197,7 @@ export const projects: Project[] = [
     coverImage: '/project-covers/document-generator.png',
   },
   {
+    slug: 'biomedical-waste-management',
     number: '03',
     title: 'Smart Biomedical Waste Management System',
     description:
@@ -208,6 +212,7 @@ export const projects: Project[] = [
     coverImage: '/project-covers/biomedical-waste.png',
   },
   {
+    slug: 'campburger-food-ordering',
     number: '04',
     title: 'CampBurger — Food Ordering App',
     description:
