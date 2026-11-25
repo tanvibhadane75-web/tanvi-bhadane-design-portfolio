@@ -10,66 +10,16 @@ export const profile = {
 };
 
 export const hero = {
-  heading: 'A little about me',
+  heading: "Hello, I'm Tanvi!",
   intro: [
-    "Hi, I'm Tanvi Bhadane.",
-    "I'm an engineering graduate interested in technology, data and design. I enjoy exploring ideas, understanding problems and creating things that bring together logic and creativity.",
+    "Hello, I'm Tanvi!",
+    'A curious mind, a creative heart.',
+    'I\'m an Electronics and Telecommunication engineering graduate drawn to design, technology and creative problem-solving. I enjoy understanding a challenge and turning ideas into clear, useful digital experiences.',
   ],
   status:
     'Currently learning data analytics, exploring UI/UX and looking for opportunities to grow, create and learn.',
   sideNote: 'currently exploring → data analytics & ui/ux',
 };
-
-export const aboutNotes = [
-  {
-    label: 'education',
-    text: 'B.Tech in Electronics & Telecommunication Engineering — VIIT, Pune.',
-    style: 'note-terracotta' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'also education',
-    text: 'Diploma in Information Technology — Government Polytechnic, Nashik.',
-    style: 'note-yellow' as const,
-    rotate: 'rotate-1',
-  },
-  {
-    label: 'experience',
-    text: 'Interned as a web development intern — built and shipped real, working things for real people.',
-    style: 'paper' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'curiosity no. 1',
-    text: 'Data analytics. I like asking questions of messy data until it answers clearly.',
-    style: 'note-pink' as const,
-    rotate: 'rotate-3',
-  },
-  {
-    label: 'curiosity no. 2',
-    text: 'UI/UX and product design — starting every build from the person using it.',
-    style: 'note-blue' as const,
-    rotate: 'rotate-1',
-  },
-  {
-    label: 'the way i work',
-    text: 'Technical problem-solving, patiently. Understand first, then build.',
-    style: 'paper' as const,
-    rotate: '-rotate-2',
-  },
-  {
-    label: 'design head',
-    text: 'Design Head at Institute to Industry Connect (I2IC) — led design initiatives and mentored the team.',
-    style: 'note-orange' as const,
-    rotate: 'rotate-2',
-  },
-  {
-    label: 'outside the screen',
-    text: 'NSS Volunteer — community service, awareness campaigns and environmental initiatives.',
-    style: 'note-lime' as const,
-    rotate: '-rotate-3',
-  },
-];
 
 export type DoodleKind = 'strings' | 'ukulele' | 'portrait' | 'palette' | 'sun' | 'book' | 'sparkle';
 
@@ -128,6 +78,11 @@ export const currently = [
 
 export const skills = [
   {
+    group: 'Design',
+    note: 'where things feel right',
+    items: ['Figma', 'Canva', 'UI Design', 'Typography', 'Layout', 'Visual Design'],
+  },
+  {
     group: 'Development',
     note: 'where things get built',
     items: ['Python', 'SQL', 'HTML', 'CSS', 'PHP', 'FastAPI', 'Next.js'],
@@ -138,11 +93,6 @@ export const skills = [
     items: ['Pandas', 'NumPy', 'Matplotlib', 'Data Cleaning', 'Data Analysis', 'PostgreSQL', 'MySQL'],
   },
   {
-    group: 'Design',
-    note: 'where things feel right',
-    items: ['Figma', 'Canva', 'UI Design', 'Typography', 'Layout & Visual Design'],
-  },
-  {
     group: 'Tools',
     note: 'the quiet helpers',
     items: ['Git', 'GitHub', 'VS Code', 'Excel', 'PowerPoint'],
@@ -150,19 +100,23 @@ export const skills = [
 ];
 
 export type Project = {
+  slug: string;
   number: string;
   title: string;
   description: string;
   contribution: string;
   tags: string[];
-  link: string;
-  linkLabel: string;
+  link?: string;
+  linkLabel?: string;
+  futureScope?: string;
   size: 'large' | 'medium' | 'small';
-  placeholderNote: string;
+  coverNote: string;
+  coverImage: string;
 };
 
 export const projects: Project[] = [
   {
+    slug: 'ai-recruiting-agent',
     number: '01',
     title: 'AI Recruiting Agent',
     description:
@@ -173,46 +127,53 @@ export const projects: Project[] = [
     link: 'https://github.com/tanvibhadane75-web',
     linkLabel: 'View on GitHub',
     size: 'large',
-    placeholderNote: 'project screenshot — replace with your own',
+    coverNote: 'a thoughtful match, made easier',
+    coverImage: '/project-covers/ai-recruiting.png',
   },
   {
+    slug: 'campburger-food-ordering',
     number: '02',
-    title: 'Document Generator',
-    description:
-      'An application developed to automate Bonafide Certificates, Leaving Certificates and Form 15A generation using student roll numbers.',
-    contribution:
-      'Built the full web application and database, automating a repetitive college administrative workflow end to end.',
-    tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View on GitHub',
-    size: 'medium',
-    placeholderNote: 'project screenshot — replace with your own',
-  },
-  {
-    number: '03',
-    title: 'Smart Biomedical Waste Management System',
-    description:
-      'A system designed to support biomedical waste tracking, categorisation, QR-based tracking and reporting.',
-    contribution:
-      'Designed the tracking flow across hospitals, with role-based dashboards for admins, hospital staff and drivers.',
-    tags: ['QR Tracking', 'PostgreSQL', 'Dashboards'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View on GitHub',
-    size: 'medium',
-    placeholderNote: 'project screenshot — replace with your own',
-  },
-  {
-    number: '04',
     title: 'CampBurger — Food Ordering App',
     description:
       'A UI/UX project focused on a food ordering experience, including menu navigation, cart and checkout.',
     contribution:
       'Designed a clean, simple mobile ordering flow with a focus on smooth navigation between menu, cart and checkout.',
     tags: ['Figma', 'UI/UX', 'Mobile'],
-    link: 'https://github.com/tanvibhadane75-web',
-    linkLabel: 'View design',
+    link: 'https://www.figma.com/design/6dlNjMgQ3ocnTB9AhGPBCf/Camp-Burger',
+    linkLabel: 'View in Figma',
     size: 'small',
-    placeholderNote: 'design preview — replace with your own',
+    coverNote: 'a little more delight in every order',
+    coverImage: '/project-covers/campburger.png',
+  },
+  {
+    slug: 'biomedical-waste-management',
+    number: '03',
+    title: 'Smart Biomedical Waste Management System',
+    description:
+      'Problem solved: Hospitals needed a reliable, traceable way to track biomedical waste instead of handling it manually. What we did: Developed a web-based portal for biomedical waste tracking across hospitals, using QR codes and a PostgreSQL database to store and manage data.',
+    contribution:
+      'Built role-based dashboards for administrators, hospital staff and drivers.',
+    futureScope:
+      'Add real-time alerts, compliance reports and analytics, and scale the portal to more hospitals.',
+    tags: ['Python', 'REST APIs', 'PostgreSQL', 'QR Code Integration', 'Vercel'],
+    size: 'medium',
+    coverNote: 'making every handoff count',
+    coverImage: '/project-covers/biomedical-waste.png',
+  },
+  {
+    slug: 'document-generator',
+    number: '04',
+    title: 'Document Generator',
+    description:
+      'An application developed to automate Bonafide Certificates, Leaving Certificates and Form 15A generation using student roll numbers.',
+    contribution:
+      'Built the full web application and database, automating a repetitive college administrative workflow end to end.',
+    tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
+    link: 'https://github.com/Student-section-project/DocumentGenerator',
+    linkLabel: 'View on GitHub',
+    size: 'medium',
+    coverNote: 'less repetition, more room to focus',
+    coverImage: '/project-covers/document-generator.png',
   },
 ];
 
@@ -241,27 +202,39 @@ export const resume = {
       detail: 'Built and shipped working web features.',
     },
   ],
-  leadership: [
-    {
-      title: 'Design Head',
-      place: 'Institute to Industry Connect (I2IC)',
-      detail: 'Aug 2024 – Aug 2025 · Led design initiatives, created visual content, mentored team members.',
-    },
-    {
-      title: 'NSS Volunteer',
-      place: 'National Service Scheme',
-      detail: 'Sep 2023 – Sep 2025 · Community service, awareness campaigns, environmental initiatives.',
-    },
-    {
-      title: 'Volunteer',
-      place: 'Regional Industry Summit 2024 (DSCI, IFCCI, IGCC)',
-      detail: 'Hyatt Regency Pune — industry-academia event.',
-    },
-  ],
-  achievements: [
-    { title: '1st Prize — VISHWACON 2024', place: 'AGRITECH Conclave (International Conference, VIT Pune)', detail: 'IoT Smart Cow Management — real-time livestock monitoring using RFID and ESP8266.' },
-  ],
 };
+
+export const achievements = [
+  {
+    title: '1st Prize — AGRITECH Conclave, VISHWACON 2024',
+    place: 'International Conference, VIT Pune',
+    detail: 'Awarded for developing an IoT-based Smart Cow Management System using RFID and ESP8266 for real-time livestock monitoring.',
+    link: 'https://drive.google.com/drive/folders/1tG0uOb93VRGdlj6I4SdWpd1Lzx9tUyIy',
+    linkLabel: 'View certificate',
+  },
+];
+
+export const extracurricularActivities = [
+  {
+    title: 'Institute to Industry Connect (I2IC)',
+    place: 'Design Lead · Aug 2024 – Aug 2025',
+    detail: '',
+    link: 'https://drive.google.com/drive/folders/14wdhiFQqTvImUAysPUN7NcKWKJSci0D_',
+    linkLabel: 'View certificate',
+  },
+  {
+    title: 'National Service Scheme (NSS)',
+    place: 'Volunteer · Sep 2023 – Sep 2025',
+    detail: '',
+  },
+  {
+    title: 'Regional Industry Summit 2024',
+    place: 'Volunteer · DSCI, IFCCI, IGCC · Hyatt Regency Pune',
+    detail: '',
+    link: 'https://drive.google.com/drive/folders/1_BWDL-IEHLx5IOc1-s9U_rHMgDujkx3s',
+    linkLabel: 'View certificate',
+  },
+];
 
 export const contact = {
   heading: "Have something in mind? Let's connect.",

@@ -1,22 +1,27 @@
 import './globals.css';
-import type { Metadata } from 'next';
-import { Inter, Playfair_Display, Caveat } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Inter, Noto_Sans_Devanagari, Playfair_Display, Caveat } from 'next/font/google';
 
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const devanagari = Noto_Sans_Devanagari({ subsets: ['devanagari'], weight: ['400', '500', '600', '700'], variable: '--font-devanagari' });
 const serif = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const hand = Caveat({ subsets: ['latin'], variable: '--font-hand' });
 
 export const metadata: Metadata = {
-  title: 'Tanvi Bhadane — A little about me',
+  title: 'Tanvi Bhadane — A Little Journal of a Curious Mind',
   description:
-    'Personal portfolio of Tanvi Bhadane — engineering graduate interested in technology, data and design. Data analytics, UI/UX and creative projects.',
-  keywords: ['Tanvi Bhadane', 'portfolio', 'data analytics', 'UI/UX', 'web development'],
+    'A scrapbook-style portfolio by Tanvi Bhadane, an engineering graduate interested in technology, data, design, music, books and building thoughtful digital experiences.',
+  keywords: ['Tanvi Bhadane', 'portfolio', 'data analytics', 'UI/UX', 'web development', 'design'],
   openGraph: {
-    title: 'Tanvi Bhadane — A little about me',
+    title: 'Tanvi Bhadane — A Little Journal of a Curious Mind',
     description:
-      'A personal journal-style portfolio: projects, skills and the person behind them.',
+      'Explore selected projects, case notes, creative interests and the person behind the work.',
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#171717',
 };
 
 export default function RootLayout({
@@ -25,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${hand.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${hand.variable} ${devanagari.variable}`}>
       <body className="font-sans">{children}</body>
     </html>
   );
