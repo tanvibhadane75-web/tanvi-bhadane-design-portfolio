@@ -52,9 +52,15 @@ export function Hero() {
             <div className="hero-sage-paper" aria-hidden="true" />
             <figure className="hero-polaroid paper-edge relative mx-auto w-[min(100%,20rem)] rotate-2 p-3 pb-5 sm:w-[min(100%,22rem)]">
               <span className="tape tape-pink -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden="true" />
-              <div className="photo-placeholder flex aspect-[4/5] flex-col items-center justify-center gap-3 border border-dashed border-[#b9a995] px-4 text-center" role="img" aria-label="Portrait photo of Tanvi to be added when the image is available">
-                <Doodle kind="portrait" className="h-24 text-[#81766c]" />
-                <span className="font-hand text-xl text-[#766c62]">Tanvi&apos;s portrait goes here</span>
+              <div className="relative aspect-[4/5] overflow-hidden bg-black" role="img" aria-label="Portrait of Tanvi standing in a tropical garden">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-11-25%20at%202.45.13%20PM-MijdvnBVpu60pFux97sAx1Wvqe4MaB.jpeg"
+                  alt="Tanvi standing in a tropical garden"
+                  fill
+                  sizes="(max-width: 640px) 80vw, 352px"
+                  className="object-cover object-center"
+                  unoptimized
+                />
               </div>
               <figcaption className="pt-3 text-center font-hand text-lg text-[#34312f]">a curious mind, collecting little details</figcaption>
             </figure>

@@ -42,20 +42,20 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-white/90 backdrop-blur-sm shadow-[0_1px_0_var(--line)]' : 'bg-transparent'
+        scrolled ? 'bg-[#111111]/95 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.12)]' : 'bg-transparent'
       }`}
     >
       <nav className="mx-auto grid max-w-6xl grid-cols-[1fr_auto] gap-x-5 gap-y-2 px-5 py-4 md:flex md:items-center md:justify-between md:px-8" aria-label="Main">
         <a
           href="#top"
-          className="font-hand text-2xl leading-none text-neutral-900 transition-transform duration-300 hover:-rotate-2"
+          className="font-hand text-2xl leading-none text-neutral-100 transition-transform duration-300 hover:-rotate-2"
         >
           {profile.name}
           <span className="sr-only"> — back to top</span>
         </a>
         <button
           type="button"
-          className="inline-flex items-center gap-2 border border-[var(--line)] bg-white/80 px-3 py-2 text-xs tracking-wide text-neutral-700 md:hidden"
+          className="inline-flex items-center gap-2 border border-white/20 bg-neutral-900 px-3 py-2 text-xs tracking-wide text-neutral-100 md:hidden"
           aria-controls="portfolio-navigation"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
@@ -73,7 +73,7 @@ export function Nav() {
                   onClick={() => setMenuOpen(false)}
                   aria-current={isActive ? 'true' : undefined}
                   className={`text-[13px] tracking-wide transition-colors duration-300 hover:text-neutral-900 ${
-                    isActive ? 'text-neutral-900' : 'text-neutral-500'
+                    isActive ? 'text-neutral-100' : 'text-neutral-400'
                   }`}
                 >
                   {link.label}
