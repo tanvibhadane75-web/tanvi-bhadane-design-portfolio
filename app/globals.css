@@ -22,8 +22,8 @@
 }
 
 :root {
-  color-scheme: light;
-  --paper: #080808;
+  color-scheme: dark;
+  --paper: #171717;
   --ink: #F5F2ED;
   --dusty-peach: #D9B7A5;
   --sage: #A8B8A0;
@@ -71,10 +71,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #080808;
+    background-color: #171717;
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      linear-gradient(to right, rgba(245, 239, 229, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(245, 239, 229, 0.035) 1px, transparent 1px);
     background-size: 32px 32px;
   }
   ::selection {
@@ -219,36 +219,97 @@
 }
 
 .grid-paper {
-  background-color: #080808;
+  background-color: #171717;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(245, 239, 229, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 239, 229, 0.035) 1px, transparent 1px);
   background-size: 32px 32px;
-  color: #f5f2ed;
+  color: #f5efe5;
 }
 
 main > section {
-  background-color: #080808 !important;
-  color: #f5f2ed;
+  background-color: #171717 !important;
+  color: #f5efe5;
 }
 
-main > section [class*="text-[#34312f]"],
-main > section [class*="text-[#3B3632]"],
-main > section [class*="text-[#625c55]"],
-main > section [class*="text-[#766c62]"],
-main > section [class*="text-[#77716A]"],
-main > section [class*="text-[#8a8580]"],
-main > section [class*="text-[#8a6c57]"],
-main > section h1[class*="text-neutral-"],
-main > section h2[class*="text-neutral-"],
-main > section p[class*="text-neutral-600"],
-main > section a[class*="text-neutral-"] {
-  color: #f5f2ed !important;
+main > section:not(.grid-paper) {
+  background-image: radial-gradient(ellipse at 12% 8%, rgba(217, 183, 165, 0.045), transparent 42%);
 }
 
-main > section .paper-card [class*="text-neutral-"],
-main > section .resume-paper [class*="text-neutral-"],
-main > section .case-study-card [class*="text-neutral-"] {
+main > section h1,
+main > section h2,
+main > section h3 {
+  color: #f5efe5 !important;
+}
+
+main > section p {
+  color: #d5cec5 !important;
+}
+
+main > section a:not([class*="bg-"]):not(.quick-link) {
+  color: #e6c7a8;
+}
+
+main > section .paper-card,
+main > section .sticky-note,
+main > section .quick-link,
+main > section .case-study-card,
+main > section .hero-polaroid {
+  color: #34312f;
+}
+
+main > section .paper-card h1,
+main > section .paper-card h2,
+main > section .paper-card h3,
+main > section .paper-card p,
+main > section .paper-card a,
+main > section .sticky-note h1,
+main > section .sticky-note h2,
+main > section .sticky-note h3,
+main > section .sticky-note p,
+main > section .sticky-note a,
+main > section .quick-link h1,
+main > section .quick-link h2,
+main > section .quick-link h3,
+main > section .quick-link p,
+main > section .quick-link a,
+main > section .case-study-card h1,
+main > section .case-study-card h2,
+main > section .case-study-card h3,
+main > section .case-study-card p,
+main > section .case-study-card a,
+main > section .hero-polaroid h1,
+main > section .hero-polaroid h2,
+main > section .hero-polaroid h3,
+main > section .hero-polaroid p,
+main > section .hero-polaroid a {
+  color: #34312f !important;
+}
+
+.section-label {
+  color: #D9B7A5 !important;
+}
+main > section .paper-card .section-label {
+  color: #8a5e4b !important;
+}
+
+main > section p.hero-kraft-label {
+  color: #5b4639 !important;
+}
+main > section p.hero-availability {
+  color: #4f6550 !important;
+}
+main > section .wish-subtitle {
+  color: #E9D18E !important;
+}
+main > section .resume-paper {
+  color: #34312f;
+}
+main > section .resume-paper h1,
+main > section .resume-paper h2,
+main > section .resume-paper h3,
+main > section .resume-paper p,
+main > section .resume-paper a {
   color: #34312f !important;
 }
 
@@ -669,7 +730,8 @@ main > section .case-study-card [class*="text-neutral-"] {
 .case-reserved summary:focus-visible { outline: 2px solid #8c6953; outline-offset: 4px; }
 .wish-dialog-backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; background: rgba(39, 37, 34, .42); backdrop-filter: blur(4px); }
 .wish-dialog { position: relative; width: min(100%, 460px); padding: 34px; background: #fffefb; box-shadow: 0 28px 70px -30px rgba(25, 23, 20, .5); animation: note-open 260ms ease both; }
-.wish-dialog-close { position: absolute; right: 13px; top: 10px; width: 36px; height: 36px; border: 1px solid var(--line); background: #fbf8f2; font-size: 24px; line-height: 1; color: var(--ink); }
+
+.wish-dialog-close { position: absolute; right: 13px; top: 10px; width: 36px; height: 36px; border: 1px solid var(--line); background: #fbf8f2; font-size: 24px; line-height: 1; color: #34312f; }
 @keyframes note-open { from { opacity: 0; transform: translateY(8px) rotate(-1deg) scale(.98); } to { opacity: 1; transform: translateY(0) rotate(0) scale(1); } }
 .journal-signoff { display: inline-block; transform: rotate(-2deg); }
 @keyframes note-rock { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(1deg); } }

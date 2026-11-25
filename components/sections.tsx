@@ -8,7 +8,7 @@ import { Doodle } from '@/components/doodles';
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-hand text-xl text-[#8a8580]">
+    <p className="section-label font-hand text-xl text-[#D9B7A5]">
       <span className="section-label-star" aria-hidden="true" />
       {children}
     </p>
@@ -29,7 +29,7 @@ export function Hero() {
         <div className="grid flex-1 items-center gap-10 py-8 md:grid-cols-[1.08fr_.92fr] md:gap-12 md:py-10">
           <div className="reveal is-visible" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
             <p className="hero-kraft-label">FIELD NOTES <span aria-hidden="true">/</span> A PERSONAL JOURNAL</p>
-            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#a8b8a0] bg-[#e9efe6] px-3 py-1.5 text-xs font-medium tracking-wide text-[#4f6550]">
+            <p className="hero-availability mt-6 inline-flex items-center gap-2 rounded-full border border-[#a8b8a0] bg-[#e9efe6] px-3 py-1.5 text-xs font-medium tracking-wide text-[#4f6550]">
               <span className="size-2 rounded-full bg-[#728c70]" aria-hidden="true" />
               Open to opportunities
             </p>
@@ -356,7 +356,7 @@ export function DreamWishJar() {
         <div className="reveal max-w-2xl">
           <SectionLabel>chapter six — a little something for the guestbook</SectionLabel>
           <h2 className="mt-3 font-serif-display text-4xl text-neutral-900 md:text-5xl">A jar full of dreams</h2>
-          <p className="mt-2 font-hand text-2xl text-[#a9523d]">Somewhere I&apos;d love to be...</p>
+          <p className="wish-subtitle mt-2 font-hand text-2xl text-[#E9D18E]">Somewhere I&apos;d love to be...</p>
           <p className="mt-4 max-w-xl leading-relaxed text-neutral-600">Everyone has a place they&apos;ve dreamed of visiting. What&apos;s yours?</p>
         </div>
 
