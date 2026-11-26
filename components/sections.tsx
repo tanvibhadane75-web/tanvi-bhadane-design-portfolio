@@ -340,7 +340,7 @@ export function DreamWishJar() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, startedAt }),
       });
-      const payload = (await response.json()) as { wish?: Wish; error?: string };
+      const payload = (await response.json().catch(() => ({}))) as { wish?: Wish; error?: string };
 
       if (!response.ok || !payload.wish) {
         throw new Error(payload.error ?? 'Your wish could not be added right now.');

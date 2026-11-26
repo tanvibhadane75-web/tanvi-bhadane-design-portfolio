@@ -11,13 +11,18 @@ type WishPayload = {
   startedAt?: unknown;
 };
 
+const supabaseUrl = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 function getSupabase() {
-  return createClient(
-    process.env.SUPABASE_URL as string,
-    process.env.SUPABASE_ANON_KEY as string,
-    { auth: { persistSession: false, autoRefreshToken: false } }
-  );
+  if (!supabaseUrl || !supabaseKey) return null;
+  return createClient(supabaseUrl, supabaseKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
 }
+
+const unavailable = () =>
+  NextResponse.json({ error: 'The wish jar is resting for now. Please try again later.' }, { status: 503 });
 
 function textValue(value: unknown): string {
   return typeof value === 'string' ? value.replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim() : '';
@@ -40,7 +45,10 @@ function toWish(row: {
 }
 
 export async function GET() {
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return NextResponse.json({ wishes: [] });
+
+  const { data, error } = await supabase
     .from('dream_wishes')
     .select(wishFields)
     .order('created_at', { ascending: false })
@@ -78,7 +86,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Please keep your wish within the suggested lengths.' }, { status: 400 });
   }
 
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return unavailable();
+
+  const { data, error } = await supabase
     .from('dream_wishes')
     .insert({
       visitor_name: name || null,
