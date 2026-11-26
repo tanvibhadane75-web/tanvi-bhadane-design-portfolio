@@ -731,7 +731,7 @@ main > section .resume-paper a {
 .case-coming-soon { display: inline-block; border: 1px dashed #c9a98c; background: #fff5e8; padding: 8px 11px; color: #8b563e; font-family: var(--font-hand), cursive; font-size: 17px; transform: rotate(-1deg); }
 .case-reserved summary { cursor: pointer; color: #79726a; font-size: 13px; text-decoration: underline; text-decoration-color: #d5cabb; text-underline-offset: 4px; }
 .case-reserved summary:focus-visible { outline: 2px solid #8c6953; outline-offset: 4px; }
-.wish-dialog-backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; background: rgba(39, 37, 34, .42); backdrop-filter: blur(4px); }
+.wish-dialog-backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; background: rgba(39, 37, 34, .42); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .wish-dialog { position: relative; width: min(100%, 460px); padding: 34px; background: #fffefb; box-shadow: 0 28px 70px -30px rgba(25, 23, 20, .5); animation: note-open 260ms ease both; }
 
 .wish-dialog-close { position: absolute; right: 13px; top: 10px; width: 36px; height: 36px; border: 1px solid var(--line); background: #fbf8f2; font-size: 24px; line-height: 1; color: #34312f; }
