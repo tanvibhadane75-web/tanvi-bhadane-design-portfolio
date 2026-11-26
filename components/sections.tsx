@@ -949,7 +949,6 @@ export function Contact() {
         <p className="reveal mt-16 font-hand text-2xl text-neutral-500">{contact.closingNote}</p>
         <p className="reveal mt-2 font-hand text-xl text-[#b6a88f]">— Tanvi</p>
         <p className="reveal journal-signoff mt-8 font-hand text-xl text-[#a9523d]">Made with curiosity and a little coffee.</p>
-        <a href="/admin/login" className="mt-7 inline-flex min-h-11 items-center border-b border-dashed border-[#b9a995] px-1 text-xs text-[#766c62] transition-colors hover:border-[#9c604e] hover:text-[#34312f]">Owner sign in</a>
       </div>
     </section>
   );
