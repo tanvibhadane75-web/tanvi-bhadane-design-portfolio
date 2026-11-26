@@ -5,6 +5,7 @@ import Image from 'next/image';
 import useSWR from 'swr';
 import { achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
 import { Doodle } from '@/components/doodles';
+import { PhotoWall } from '@/components/photo-wall';
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -131,27 +132,12 @@ export function About() {
           <span className="flower-sticker absolute right-8 top-2 hidden rotate-12 md:block" aria-hidden="true" />
         </header>
 
-        <div className="mt-12 grid items-start gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-          <div className="relative mx-auto w-full max-w-[22rem]">
-            <figure className="about-polaroid paper-card paper-edge relative rotate-2 p-3 pb-5 transition-transform duration-500 hover:rotate-0">
-              <span className="tape tape-pink left-[18%] top-0 rotate-3" aria-hidden="true" />
-              <div className="relative aspect-[4/5] overflow-hidden bg-[#d5cec5]">
-                <Image
-                  src="/portfolio/tanvi-portrait.jpeg"
-                  alt="Tanvi standing in a tropical garden"
-                  fill
-                  sizes="(max-width: 1024px) 80vw, 352px"
-                  className="object-cover object-center"
-                />
-              </div>
-              <figcaption className="pt-3 text-center font-hand text-lg">a curious mind, collecting little details</figcaption>
-              <span className="paper-clip -right-2 top-8" aria-hidden="true" />
-            </figure>
-            <span className="sticky-note note-lime note-edge absolute -bottom-5 -left-5 rotate-[-5deg] px-4 py-3 font-hand text-lg text-[#34312f] shadow-lg">curious by nature</span>
-            <span className="absolute -right-4 top-8 rotate-12 font-hand text-3xl text-[#D9AEB2]" aria-hidden="true">✳</span>
-          </div>
+        <div className="mt-12">
+          <PhotoWall />
+        </div>
 
-          <div className="relative">
+        <div className="mt-14 grid items-start gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:gap-12">
+          <div className="relative contents lg:block">
             <article className="paper-card paper-edge relative p-6 md:p-9">
               <span className="tape tape-pink -top-3 left-10 -rotate-2" aria-hidden="true" />
               <span className="paper-clip -right-2 -top-3" aria-hidden="true" />
@@ -164,8 +150,10 @@ export function About() {
                 My journey began with a Diploma in Information Technology from Government Polytechnic Nashik, followed by a B.Tech in Electronics and Telecommunication Engineering from VIIT Pune. Along the way, I gained web development internship experience, served as Design Head at I2IC and volunteered with NSS.
               </p>
             </article>
+          </div>
 
-            <aside className="mt-8 rotate-[-1deg]" aria-labelledby="about-facts-title">
+          <div className="relative">
+            <aside className="rotate-[-1deg] lg:mt-6" aria-labelledby="about-facts-title">
               <div className="sticky-note note-yellow note-edge relative p-5 pt-7 shadow-lg md:p-6 md:pt-8">
                 <span className="tape tape-pink -top-3 left-9 rotate-2" aria-hidden="true" />
                 <h3 id="about-facts-title" className="font-hand text-2xl text-[#34312f]">A few things about me</h3>
@@ -961,7 +949,6 @@ export function Contact() {
         <p className="reveal mt-16 font-hand text-2xl text-neutral-500">{contact.closingNote}</p>
         <p className="reveal mt-2 font-hand text-xl text-[#b6a88f]">— Tanvi</p>
         <p className="reveal journal-signoff mt-8 font-hand text-xl text-[#a9523d]">Made with curiosity and a little coffee.</p>
-        <a href="/admin/login" className="mt-7 inline-flex min-h-11 items-center border-b border-dashed border-[#b9a995] px-1 text-xs text-[#766c62] transition-colors hover:border-[#9c604e] hover:text-[#34312f]">Owner sign in</a>
       </div>
     </section>
   );
