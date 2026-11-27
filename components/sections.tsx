@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import useSWR from 'swr';
-import { achievements, beyond, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
+import { achievements, beyond, certifications, contact, currently, extracurricularActivities, hero, profile, projects, resume, skills } from '@/lib/content';
 import { Doodle } from '@/components/doodles';
 import { PhotoWall } from '@/components/photo-wall';
 
@@ -602,7 +602,123 @@ export function Skills() {
   );
 }
 
-function ProjectCover({ slug, title, image, note, index, size }: { slug: string; title: string; image: string; note: string; index: number; size: (typeof projects)[number]['size'] }) {
+/* ─── Certifications ──────────────────────────────────────── */
+
+export function Certifications() {
+  return (
+    <section id="certifications" className="scroll-mt-24 border-t border-[var(--line)] px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
+
+        {/* Section header */}
+        <div className="reveal relative flex flex-wrap items-end justify-between gap-5">
+          <div>
+            <SectionLabel>chapter four-b — always learning</SectionLabel>
+            <h2 className="mt-3 font-serif-display text-4xl md:text-5xl">
+              Little Things I&apos;ve Learned.
+            </h2>
+            <p className="mt-3 font-hand text-xl text-[#8a8580]">Certifications &amp; continuous learning.</p>
+          </div>
+          {/* Decorative sticker top-right */}
+          <span className="hidden rotate-6 font-hand text-3xl text-[#D9AEB2] md:block" aria-hidden="true">✦</span>
+        </div>
+
+        {/* Cards grid */}
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {certifications.map((cert, i) => (
+            <article
+              key={cert.id}
+              className={`cert-card paper-card paper-edge reveal relative p-6 md:p-8 ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}
+              style={{ '--reveal-delay': `${i * 90}ms` } as React.CSSProperties}
+              aria-label={`${cert.course} certificate from ${cert.platform}`}
+            >
+              {/* Tape + clip decorations */}
+              <span className="tape tape-pink -top-3 left-10 -rotate-2" aria-hidden="true" />
+              <span className="paper-clip -right-2 -top-3" aria-hidden="true" />
+
+              {/* Platform badge */}
+              <div className="flex items-center justify-between">
+                <span className="cert-platform-badge inline-flex items-center gap-1.5 border border-[#A9BBD0]/60 bg-[#e8eff7] px-2.5 py-1 font-hand text-sm text-[#3d5a73]">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <circle cx="6" cy="6" r="5.25" stroke="#3d5a73" strokeWidth="1.1" />
+                    <path d="M4 6.5 L5.5 8 L8.5 4.5" stroke="#3d5a73" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {cert.platform}
+                </span>
+                <span className="font-hand text-base text-[#8a8580]">{cert.date}</span>
+              </div>
+
+              {/* UX / design illustration */}
+              <div className="cert-illustration mt-5 flex items-center justify-center" aria-hidden="true">
+                <svg width="68" height="52" viewBox="0 0 68 52" fill="none" className="text-[#b77c64]">
+                  {/* Wireframe screen */}
+                  <rect x="2" y="2" width="64" height="42" rx="4" stroke="currentColor" strokeWidth="1.4" />
+                  {/* Header bar */}
+                  <rect x="2" y="2" width="64" height="10" rx="4" fill="currentColor" fillOpacity="0.12" />
+                  {/* Three dots */}
+                  <circle cx="9" cy="7" r="1.5" fill="currentColor" fillOpacity="0.5" />
+                  <circle cx="14" cy="7" r="1.5" fill="currentColor" fillOpacity="0.5" />
+                  <circle cx="19" cy="7" r="1.5" fill="currentColor" fillOpacity="0.5" />
+                  {/* Content lines */}
+                  <rect x="10" y="18" width="28" height="2.5" rx="1.25" fill="currentColor" fillOpacity="0.3" />
+                  <rect x="10" y="23" width="20" height="2" rx="1" fill="currentColor" fillOpacity="0.2" />
+                  <rect x="10" y="27" width="24" height="2" rx="1" fill="currentColor" fillOpacity="0.2" />
+                  {/* Prototype connector */}
+                  <line x1="34" y1="44" x2="34" y2="51" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 2" />
+                  {/* Star sparkle */}
+                  <path d="M56 15 L57.2 18.5 L61 18.5 L58 20.5 L59 24 L56 22 L53 24 L54 20.5 L51 18.5 L54.8 18.5 Z" fill="currentColor" fillOpacity="0.35" />
+                </svg>
+              </div>
+
+              {/* Issued by */}
+              <p className="mt-4 font-hand text-base text-[#8a5e4b]">by {cert.issuedBy}</p>
+
+              {/* Course title */}
+              <h3 className="mt-1 font-serif-display text-xl leading-snug text-[#34312f] md:text-2xl">
+                {cert.course}
+              </h3>
+
+              {/* Personal note */}
+              <p className="mt-3 font-hand text-lg italic text-[#625c55]">{cert.note}</p>
+
+              {/* Ruled line */}
+              <div className="rule-soft mt-5" />
+
+              {/* CTA */}
+              <div className="mt-5">
+                <a
+                  href={cert.verifyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cert-verify-link group inline-flex items-center gap-2 border-b border-[#34312f] pb-1 text-sm tracking-wide text-[#34312f] transition-colors hover:text-[#8a5e4b]"
+                >
+                  View Certificate
+                  <svg width="13" height="13" viewBox="0 0 13 13" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true">
+                    <path d="M2 11 L11 2 M5 2 H11 V8" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </div>
+            </article>
+          ))}
+
+          {/* "More coming" placeholder card */}
+          <div className="cert-placeholder paper-edge reveal relative flex min-h-[300px] flex-col items-center justify-center gap-4 border border-dashed border-[#d5cabb] bg-[#faf6ef] p-8 text-center rotate-1" style={{ '--reveal-delay': `${certifications.length * 90}ms` } as React.CSSProperties}>
+            <span className="flower-sticker scale-150" aria-hidden="true" />
+            <p className="font-hand text-xl text-[#8a8580]">more little lessons on the way</p>
+            <p className="text-xs uppercase tracking-[0.14em] text-[#b6a88f]">always learning</p>
+          </div>
+        </div>
+
+        {/* Closing note */}
+        <p className="reveal mt-14 font-hand text-xl text-[#8a8580]">
+          Learning never stops — just the certificates do, sometimes. <span aria-hidden="true">✿</span>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCover( slug, title, image, note, index, size }: { slug: string; title: string; image: string; note: string; index: number; size: (typeof projects)[number]['size'] }) {
   const proportions = size === 'large' ? 'aspect-[16/10]' : size === 'medium' ? 'aspect-[4/3]' : 'aspect-square';
   const tilts = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'] as const;
 

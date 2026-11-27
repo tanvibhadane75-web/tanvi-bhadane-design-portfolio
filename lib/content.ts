@@ -236,6 +236,18 @@ export const extracurricularActivities = [
   },
 ];
 
+export const certifications = [
+  {
+    id: 'google-ux-design',
+    course: 'Foundations of User Experience (UX) Design',
+    platform: 'Coursera',
+    issuedBy: 'Google',
+    date: '2024',
+    note: 'understanding people, one screen at a time',
+    verifyLink: 'https://www.coursera.org/account/accomplishments/verify/OY504TN0FP3I?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
+  },
+];
+
 export const contact = {
   heading: "Have something in mind? Let's connect.",
   closingNote: 'Thanks for reading this far — it means a lot.',

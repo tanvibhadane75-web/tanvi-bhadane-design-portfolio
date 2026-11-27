@@ -1232,3 +1232,53 @@ dialog:not([open]) {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
+
+/* ============================================================
+   CERTIFICATIONS SECTION
+   ============================================================ */
+
+/* Certificate card — inherits paper-card base, adds specific hover */
+.cert-card {
+  background: #fffefb;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+.cert-card:hover {
+  transform: translateY(-5px) rotate(0deg) !important;
+  box-shadow:
+    0 2px 4px rgba(23, 23, 23, 0.06),
+    0 20px 36px -14px rgba(23, 23, 23, 0.22);
+}
+
+/* Platform badge */
+.cert-platform-badge {
+  letter-spacing: 0.03em;
+}
+
+/* SVG illustration container — subtle warm tint bg */
+.cert-illustration {
+  background: #faf4ee;
+  border: 1px dashed rgba(183, 124, 100, 0.22);
+  border-radius: 2px;
+  min-height: 72px;
+}
+
+/* Verify link arrow icon */
+.cert-verify-link svg {
+  flex-shrink: 0;
+}
+
+/* "More coming" placeholder */
+.cert-placeholder {
+  background: #faf6ef;
+  min-height: 280px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-card {
+    transition: none;
+  }
+  .cert-card:hover {
+    transform: none !important;
+  }
+}

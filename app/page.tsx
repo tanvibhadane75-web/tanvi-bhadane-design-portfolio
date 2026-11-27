@@ -5,6 +5,7 @@ import {
   BackToTop,
   Beyond,
   CaseStudies,
+  Certifications,
   Contact,
   Currently,
   DreamWishJar,
@@ -26,6 +27,7 @@ export default function Home() {
         <Projects />
         <CaseStudies />
         <Skills />
+        <Certifications />
         <Currently />
         <Resume />
         <AchievementsAndActivities />
