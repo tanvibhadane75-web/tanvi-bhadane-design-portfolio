@@ -64,7 +64,7 @@ export function Nav() {
           {menuOpen ? 'Close' : 'Menu'}
           <span aria-hidden="true" className={`transition-transform duration-300 ${menuOpen ? 'rotate-45' : ''}`}>+</span>
         </button>
-        <ul id="portfolio-navigation" className={`${menuOpen ? 'grid' : 'hidden'} col-span-2 grid-cols-3 gap-x-4 gap-y-3 border-t border-[var(--line)] pt-3 text-center md:col-span-1 md:flex md:items-center md:gap-8 md:border-0 md:py-1`}>
+        <ul id="portfolio-navigation" className={`${menuOpen ? 'grid' : 'hidden'} col-span-2 grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3 border-t border-[var(--line)] pt-3 text-center md:col-span-1 md:flex md:items-center md:gap-8 md:border-0 md:py-1`}>
           {links.map((link) => {
             const isActive = active === link.href;
             return (

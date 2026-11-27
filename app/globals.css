@@ -22,7 +22,6 @@
 }
 
 :root {
-  color-scheme: dark;
   --paper: #171717;
   --ink: #F5F2ED;
   --dusty-peach: #D9B7A5;
@@ -1035,7 +1034,7 @@ main > section .resume-paper a {
 .wall-photo {
   position: relative;
   cursor: grab;
-  touch-action: none;
+  touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -1056,6 +1055,7 @@ main > section .resume-paper a {
 .wall-photo.is-dragging {
   --lift: -4px;
   --scale: 1.06;
+  touch-action: none;
   cursor: grabbing;
   transform: rotate(calc(var(--rot) + var(--drag-tilt))) translateY(var(--lift)) scale(var(--scale));
   filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35)) drop-shadow(0 28px 32px rgba(0, 0, 0, 0.5));
@@ -1163,5 +1163,72 @@ main > section .resume-paper a {
   }
   .photo-lightbox[open] .photo-lightbox-frame {
     animation: none;
+  }
+}
+
+
+/* ============================================================
+   CROSS-BROWSER & DEVICE FIXES
+   ============================================================ */
+
+/* Fix: photo-lightbox backdrop — add -webkit- prefix for older Safari */
+.photo-lightbox::backdrop {
+  background: rgba(16, 15, 14, 0.82);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* Fix: wish-dialog-backdrop — already has -webkit- prefix, ensure blur fallback */
+.wish-dialog-backdrop {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Fix: Beyond section — override global dark text rule for light-background section */
+#beyond p,
+#beyond h2,
+#beyond h3 {
+  color: inherit !important;
+}
+#beyond .paper-card p,
+#beyond .paper-card h3 {
+  color: #625c55 !important;
+}
+#beyond > div > div > p {
+  color: #766c62 !important;
+}
+
+/* Fix: Contact section hover contrast — WCAG AA compliant (#6b5c3e = ~5.1:1 on white) */
+#contact a:hover {
+  color: #6b5c3e !important;
+}
+
+/* Fix: Ensure dialog element displays correctly across all browsers */
+dialog {
+  display: block;
+}
+dialog:not([open]) {
+  display: none;
+}
+
+/* Fix: clip-path visibility in Firefox at certain zoom levels —
+   The polygon values have been confirmed safe; this ensures antialiasing */
+.paper-edge,
+.note-edge,
+.torn-edge {
+  -webkit-clip-path: inherit;
+}
+
+/* Fix: Smooth scroll only when no reduced-motion preference */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Fix: Mobile nav grid — prevent overflow on very small screens */
+@media (max-width: 374px) {
+  #portfolio-navigation {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }

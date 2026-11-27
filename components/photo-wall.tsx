@@ -35,7 +35,8 @@ function useLayout(): Layout {
   return useSyncExternalStore(
     subscribeToLayout,
     () => (window.matchMedia('(min-width: 768px)').matches ? 'desktop' : 'mobile'),
-    () => 'desktop',
+    // Server snapshot: default to 'mobile' — safer for hydration on mobile-first devices
+    () => 'mobile',
   );
 }
 
